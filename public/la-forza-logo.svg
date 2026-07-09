@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <circle cx="256" cy="256" r="256" fill="#0a0a0a"/>
-  <circle cx="256" cy="256" r="236" stroke="#dc2626" stroke-width="12"/>
-  <circle cx="256" cy="256" r="220" fill="#111111"/>
-  <text x="256" y="290" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="148" font-weight="900" fill="#dc2626">LF</text>
-  <path d="M96 380h320" stroke="#dc2626" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <circle cx="256" cy="256" r="248" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <g fill="#ED1C24">
+    <!-- Stylized lightning F — matches @laforzagyms profile mark -->
+    <path d="M156 392 L196 128 L308 128 L292 192 L236 192 L218 272 L312 272 L296 336 L204 336 L184 416 L144 416 Z"/>
+    <path d="M204 304 L268 304 L236 360 Z"/>
+  </g>
 </svg>

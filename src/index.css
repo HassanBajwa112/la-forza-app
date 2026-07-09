@@ -33,12 +33,12 @@
   }
 
   .card-glow {
-    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.12), 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 1px rgba(237, 28, 36, 0.15), 0 8px 32px rgba(0, 0, 0, 0.55);
   }
 
   .btn-primary {
     @apply font-semibold transition-transform active:scale-[0.97];
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #ED1C24 0%, #B8151C 100%);
     color: #ffffff;
   }
 
@@ -65,7 +65,8 @@
   }
 
   .info-card {
-    @apply bg-forza-card border border-forza-border rounded-2xl p-4;
+    @apply rounded-2xl border border-forza-border/80 p-4 backdrop-blur-md;
+    background: rgba(20, 20, 20, 0.75);
   }
 }
 

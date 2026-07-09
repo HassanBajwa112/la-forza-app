@@ -61,8 +61,7 @@ export const GYM_INFO = {
   tagline: 'Strength. Discipline. Power.',
   instagram: '@laforzagyms',
   instagramUrl: 'https://www.instagram.com/laforzagyms/',
-  logoUrl:
-    'https://scontent.cdninstagram.com/v/t51.82787-19/659004585_18080254304120419_4972858865785673701_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=bf7eb4&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=FxAf0ycx8tYQ7kNvwGEJuqm&_nc_oc=AdrAskdq-ps3Wng7-HY5xPFLt8jwqVPlwKTt00UN4EkXRzuTx4E_63N7le7Kvhp_ycp0t0fDhuelNN9WiET1Y4Rv&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_ss=7f60f&oh=00_AQBy8m2F1fgGR5b8pgEfu-jPkxec8ND2UOFA44LxeWrKtw&oe=6A560D1E',
+  logoUrl: '/la-forza-logo.svg',
   logoFallback: '/la-forza-logo.svg',
   location: 'Sector F, Bahria Town, Lahore',
   landmark: 'Near Winterland',

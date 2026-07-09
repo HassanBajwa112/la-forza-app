@@ -17,7 +17,7 @@ export function ProfileScreen() {
         <h1 className="font-display text-xl font-bold text-white">{USER.name}</h1>
         <p className="text-forza-subtle text-xs mt-1">{USER.memberId}</p>
         <div className="flex items-center gap-2 mt-3">
-          <span className="px-3 py-1 rounded-full bg-forza-gold/10 border border-forza-gold/30 text-forza-gold text-xs font-semibold">
+          <span className="px-3 py-1 rounded-full bg-forza-red/10 border border-forza-red/30 text-forza-red text-xs font-semibold">
             {tier.name}
           </span>
           <span className="text-forza-subtle text-[10px]">Since {new Date(USER.memberSince).getFullYear()}</span>
@@ -102,7 +102,7 @@ function Row({ label, value, active }: { label: string; value: string; active?: 
 function InfoRow({ icon: Icon, title, sub }: { icon: typeof MapPin; title: string; sub?: string }) {
   return (
     <div className="flex items-start gap-2.5">
-      <Icon size={15} className="text-forza-gold mt-0.5 shrink-0" />
+      <Icon size={15} className="text-forza-red mt-0.5 shrink-0" />
       <div>
         <p className="text-white text-xs">{title}</p>
         {sub && <p className="text-forza-subtle text-[10px] mt-0.5">{sub}</p>}

@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext';
 import { GYM_INFO, TIERS, USER } from '../data/mockData';
 import type { Tab } from '../components/BottomNav';
 import type { GymEvent } from '../data/mockData';
+import { ScreenLayout } from '../components/ScreenLayout';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -18,10 +19,11 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
   const upcoming = events.filter((e) => !e.registered).slice(0, 2);
   const registered = events.filter((e) => e.registered);
   const activeAddons = addOns.filter((a) => a.active);
-  const crowdColor = GYM_INFO.crowdLevel < 40 ? 'text-emerald-400' : GYM_INFO.crowdLevel < 70 ? 'text-forza-gold' : 'text-forza-red';
+  const crowdColor = GYM_INFO.crowdLevel < 40 ? 'text-emerald-400' : GYM_INFO.crowdLevel < 70 ? 'text-forza-red' : 'text-forza-red-light';
 
   return (
-    <div className="scroll-area flex-1 px-5 pb-6">
+    <ScreenLayout>
+      <div className="px-5 pb-6">
       {/* Header */}
       <header className="flex items-center justify-between py-4 animate-slide-up">
         <div>
@@ -31,10 +33,11 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
           </h1>
         </div>
         <button
+          type="button"
           onClick={() => onNavigate('profile')}
-          className="w-11 h-11 rounded-full bg-gradient-to-br from-forza-gold/25 to-forza-gold/5 border border-forza-gold/30 flex items-center justify-center"
+          className="w-11 h-11 rounded-full bg-gradient-to-br from-forza-red/30 to-forza-red/5 border border-forza-red/35 flex items-center justify-center shrink-0 active:scale-95 transition-transform"
         >
-          <span className="text-forza-gold text-sm font-bold">{USER.avatar}</span>
+          <span className="text-forza-red-light text-sm font-bold">{USER.avatar}</span>
         </button>
       </header>
 
@@ -108,7 +111,7 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
             className="h-full rounded-full transition-all duration-700"
             style={{
               width: `${GYM_INFO.crowdLevel}%`,
-              background: GYM_INFO.crowdLevel < 40 ? '#34d399' : GYM_INFO.crowdLevel < 70 ? '#d4af37' : '#e63946',
+              background: GYM_INFO.crowdLevel < 40 ? '#34d399' : GYM_INFO.crowdLevel < 70 ? '#dc2626' : '#ef4444',
             }}
           />
         </div>
@@ -179,7 +182,8 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
         <MapPin size={12} />
         <p className="text-[10px]">{GYM_INFO.location}</p>
       </footer>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 }
 

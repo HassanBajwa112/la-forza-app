@@ -5,17 +5,21 @@ export default {
     extend: {
       colors: {
         forza: {
-          black: '#0a0a0a',
-          dark: '#121212',
-          card: '#1a1a1a',
-          elevated: '#222222',
-          border: '#2e2e2e',
-          gold: '#d4af37',
-          'gold-light': '#f0d060',
-          'gold-dim': '#a68b2a',
-          red: '#e63946',
-          muted: '#9ca3af',
-          subtle: '#6b7280',
+          black: '#050505',
+          dark: '#0d0d0d',
+          card: '#141414',
+          elevated: '#1c1c1c',
+          border: '#2a2a2a',
+          /* Primary accent — La Forza Instagram red */
+          gold: '#dc2626',
+          'gold-light': '#f87171',
+          'gold-dim': '#991b1b',
+          red: '#dc2626',
+          'red-light': '#ef4444',
+          'red-dim': '#7f1d1d',
+          white: '#f5f5f5',
+          muted: '#a3a3a3',
+          subtle: '#737373',
         },
       },
       fontFamily: {

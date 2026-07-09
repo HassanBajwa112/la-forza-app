@@ -8,7 +8,7 @@
   }
 
   html, body, #root {
-    @apply h-full w-full m-0 p-0 bg-[#080808] font-body antialiased;
+    @apply h-full w-full m-0 p-0 bg-[#050505] font-body antialiased;
   }
 
   body {
@@ -24,6 +24,7 @@
   .scroll-area {
     @apply overflow-y-auto overflow-x-hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     scrollbar-width: none;
   }
 
@@ -32,18 +33,18 @@
   }
 
   .card-glow {
-    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.12), 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   .btn-primary {
     @apply font-semibold transition-transform active:scale-[0.97];
-    background: linear-gradient(135deg, #d4af37 0%, #b8942e 100%);
-    color: #0a0a0a;
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    color: #ffffff;
   }
 
   .btn-ghost {
     @apply text-white transition-colors;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 

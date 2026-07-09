@@ -1,24 +1,28 @@
 import type { ReactNode } from 'react';
+import { LaForzaLogo } from './LaForzaLogo';
 
 export function PhoneFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#080808] p-0 sm:p-6 lg:p-10">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#050505] p-0 sm:p-6 lg:p-10">
       {/* Desktop presentation header */}
       <div className="hidden lg:flex fixed top-8 left-8 right-8 items-center justify-between z-50 pointer-events-none">
-        <div>
-          <p className="text-forza-subtle text-xs uppercase tracking-[0.3em]">Client Presentation</p>
-          <p className="text-white/80 text-lg font-display font-semibold mt-1">La Forza Member App</p>
+        <div className="flex items-center gap-3">
+          <LaForzaLogo size="sm" showRing={false} className="rounded-xl" />
+          <div>
+            <p className="text-forza-subtle text-xs uppercase tracking-[0.3em]">Client Presentation</p>
+            <p className="text-white/90 text-lg font-display font-semibold mt-1">La Forza Member App</p>
+          </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="px-4 py-1.5 rounded-full bg-forza-gold/10 text-forza-gold text-xs font-medium border border-forza-gold/25">
+          <span className="px-4 py-1.5 rounded-full bg-forza-red/10 text-forza-red text-xs font-medium border border-forza-red/25">
             Interactive Prototype
           </span>
-          <span className="text-forza-subtle text-xs">v1.0</span>
+          <span className="text-forza-subtle text-xs">v1.1</span>
         </div>
       </div>
 
       {/* Phone device */}
-      <div className="relative w-full max-w-[390px] h-[100dvh] sm:h-[844px] sm:rounded-[2.75rem] sm:border-[3px] sm:border-[#2a2a2a] bg-forza-black overflow-hidden sm:card-glow">
+      <div className="relative w-full max-w-[390px] h-[100dvh] sm:h-[844px] sm:rounded-[2.75rem] sm:border-[3px] sm:border-[#2a2a2a] bg-forza-black overflow-hidden sm:card-glow flex flex-col">
         {/* Notch - desktop only */}
         <div className="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-7 bg-black rounded-b-2xl z-50" />
 
@@ -38,12 +42,12 @@ export function PhoneFrame({ children }: { children: ReactNode }) {
         </div>
 
         {/* App content */}
-        <div className="h-full pt-11 pb-[72px] flex flex-col relative">
+        <div className="flex-1 min-h-0 pt-11 flex flex-col relative">
           {children}
         </div>
 
-        {/* Home indicator */}
-        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-[120px] h-1 bg-white/25 rounded-full z-50" />
+        {/* Home indicator — above bottom nav */}
+        <div className="absolute bottom-[4.5rem] left-1/2 -translate-x-1/2 w-[120px] h-1 bg-white/20 rounded-full z-30 pointer-events-none" />
       </div>
     </div>
   );

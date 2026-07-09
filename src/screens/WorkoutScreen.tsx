@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Plus, X, ChevronDown } from 'lucide-react';
 import { useApp, WORKOUT_TEMPLATES } from '../context/AppContext';
+import { ScreenLayout } from '../components/ScreenLayout';
 
 export function WorkoutScreen() {
   const { weeklyPlan, addSetToDay, removeSetFromDay } = useApp();
@@ -13,7 +14,8 @@ export function WorkoutScreen() {
   const activeDays = weeklyPlan.filter((d) => d.sets.length > 0).length;
 
   return (
-    <div className="scroll-area flex-1 px-5 pb-6">
+    <ScreenLayout>
+      <div className="px-5 pb-6">
       <header className="pt-4 pb-5">
         <h1 className="screen-header">Training</h1>
         <p className="screen-subtitle">Your weekly workout split</p>
@@ -147,6 +149,7 @@ export function WorkoutScreen() {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 }

@@ -27,9 +27,9 @@ function AppContent() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full animate-fade-in">
+    <div className="flex flex-col h-full min-h-0 flex-1 animate-fade-in">
       <Toast />
-      <div className="flex-1 overflow-hidden relative">
+      <div key={tab} className="flex-1 min-h-0 overflow-hidden">
         {screens[tab]}
       </div>
       <BottomNav active={tab} onChange={setTab} />

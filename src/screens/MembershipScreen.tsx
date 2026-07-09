@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { Check, Snowflake, Flame, Dumbbell, User, X, Star } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { TIERS, TRAINERS } from '../data/mockData';
+import { ScreenLayout } from '../components/ScreenLayout';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -41,7 +42,9 @@ export function MembershipScreen() {
     subscription.monthlyPrice + addOns.filter((a) => a.active).reduce((s, a) => s + a.price, 0);
 
   return (
-    <div className="scroll-area flex-1 px-5 pb-6 relative">
+    <div className="h-full min-h-0 flex flex-col relative">
+      <ScreenLayout>
+        <div className="px-5 pb-6 relative">
       <header className="pt-4 pb-5">
         <h1 className="screen-header">Membership</h1>
         <p className="screen-subtitle">Manage plan, add-ons & billing</p>
@@ -233,6 +236,8 @@ export function MembershipScreen() {
           <span className="text-forza-gold text-2xl font-bold">{formatPrice(totalMonthly)}</span>
         </div>
       </section>
+        </div>
+      </ScreenLayout>
 
       {/* Modals */}
       {showFreezeModal && (
@@ -300,8 +305,8 @@ export function MembershipScreen() {
 
 function Modal({ title, onClose, children, tall }: { title: string; onClose: () => void; children: ReactNode; tall?: boolean }) {
   return (
-    <div className="absolute inset-0 bg-black/75 z-50 flex items-end">
-      <div className={`w-full bg-forza-card rounded-t-3xl p-5 border-t border-forza-border animate-slide-up ${tall ? 'max-h-[75%] overflow-y-auto' : ''}`}>
+    <div className="fixed inset-0 bg-black/80 z-[60] flex items-end">
+      <div className={`w-full bg-forza-card rounded-t-3xl p-5 border-t border-forza-border animate-slide-up ${tall ? 'max-h-[75%] overflow-y-auto scroll-area' : ''}`}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-display text-lg font-bold text-white">{title}</h2>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-forza-elevated flex items-center justify-center text-forza-subtle">

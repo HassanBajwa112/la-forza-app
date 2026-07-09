@@ -1,6 +1,7 @@
 import { Tv, Users, Trophy, PartyPopper, Check, Calendar } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { GymEvent } from '../data/mockData';
+import { ScreenLayout } from '../components/ScreenLayout';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-PK', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -19,7 +20,8 @@ export function EventsScreen() {
   const upcoming = events.filter((e) => !e.registered);
 
   return (
-    <div className="scroll-area flex-1 px-5 pb-6">
+    <ScreenLayout>
+      <div className="px-5 pb-6">
       <header className="pt-4 pb-5">
         <h1 className="screen-header">Events</h1>
         <p className="screen-subtitle">Screenings, classes & community at La Forza</p>
@@ -58,7 +60,8 @@ export function EventsScreen() {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 }
 

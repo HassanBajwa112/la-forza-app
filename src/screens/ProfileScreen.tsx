@@ -1,6 +1,8 @@
 import { MapPin, Clock, AtSign, Phone, ChevronRight, LogOut } from 'lucide-react';
 import { GYM_INFO, USER, TIERS } from '../data/mockData';
 import { useApp } from '../context/AppContext';
+import { ScreenLayout } from '../components/ScreenLayout';
+import { LaForzaLogo } from '../components/LaForzaLogo';
 
 export function ProfileScreen() {
   const { subscription, addOns, assignedTrainer } = useApp();
@@ -8,11 +10,10 @@ export function ProfileScreen() {
   const activeAddons = addOns.filter((a) => a.active);
 
   return (
-    <div className="scroll-area flex-1 px-5 pb-6">
+    <ScreenLayout>
+      <div className="px-5 pb-6">
       <header className="flex flex-col items-center pt-6 pb-6">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-forza-gold/30 to-forza-red/15 border-2 border-forza-gold/40 flex items-center justify-center card-glow mb-4">
-          <span className="font-display text-3xl font-bold text-forza-gold">{USER.avatar}</span>
-        </div>
+        <LaForzaLogo size="lg" showRing={false} className="rounded-full ring-2 ring-forza-red/40 mb-4" />
         <h1 className="font-display text-xl font-bold text-white">{USER.name}</h1>
         <p className="text-forza-subtle text-xs mt-1">{USER.memberId}</p>
         <div className="flex items-center gap-2 mt-3">
@@ -48,9 +49,7 @@ export function ProfileScreen() {
 
       <section className="info-card mb-5">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-forza-gold/15 flex items-center justify-center">
-            <span className="font-display text-forza-gold font-bold">LF</span>
-          </div>
+          <LaForzaLogo size="sm" showRing={false} className="rounded-xl" />
           <div>
             <p className="font-display text-lg font-bold text-white">LA FORZA</p>
             <p className="text-forza-subtle text-[11px]">{GYM_INFO.tagline}</p>
@@ -86,7 +85,8 @@ export function ProfileScreen() {
           <LogOut size={18} /> Sign Out
         </button>
       </section>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 }
 

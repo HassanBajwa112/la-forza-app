@@ -1,0 +1,52 @@
+import { Home, Calendar, Dumbbell, CreditCard, User } from 'lucide-react';
+
+export type Tab = 'home' | 'membership' | 'events' | 'workout' | 'profile';
+
+const tabs: { id: Tab; label: string; icon: typeof Home }[] = [
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'membership', label: 'Plan', icon: CreditCard },
+  { id: 'events', label: 'Events', icon: Calendar },
+  { id: 'workout', label: 'Train', icon: Dumbbell },
+  { id: 'profile', label: 'Profile', icon: User },
+];
+
+export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
+  return (
+    <nav className="absolute bottom-0 left-0 right-0 z-40 bg-forza-dark/95 backdrop-blur-xl border-t border-forza-border">
+      <div className="flex items-stretch justify-around px-1 pt-2 pb-5">
+        {tabs.map(({ id, label, icon: Icon }) => {
+          const isActive = active === id;
+          return (
+            <button
+              key={id}
+              onClick={() => onChange(id)}
+              className="flex flex-col items-center justify-center gap-1 min-w-[64px] py-1 transition-all"
+            >
+              <div
+                className={`p-2 rounded-xl transition-all duration-200 ${
+                  isActive ? 'bg-forza-gold/15 scale-105' : ''
+                }`}
+              >
+                <Icon
+                  size={22}
+                  className={isActive ? 'text-forza-gold' : 'text-forza-subtle'}
+                  strokeWidth={isActive ? 2.5 : 1.75}
+                />
+              </div>
+              <span
+                className={`text-[10px] font-semibold transition-colors ${
+                  isActive ? 'text-forza-gold' : 'text-forza-subtle'
+                }`}
+              >
+                {label}
+              </span>
+              {isActive && (
+                <div className="w-1 h-1 rounded-full bg-forza-gold mt-0.5" />
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}

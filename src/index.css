@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body, #root {
+    @apply h-full w-full m-0 p-0 bg-[#080808] font-body antialiased;
+  }
+
+  body {
+    @apply overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Oswald', system-ui, sans-serif;
+  }
+
+  .scroll-area {
+    @apply overflow-y-auto overflow-x-hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .scroll-area::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-glow {
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-primary {
+    @apply font-semibold transition-transform active:scale-[0.97];
+    background: linear-gradient(135deg, #d4af37 0%, #b8942e 100%);
+    color: #0a0a0a;
+  }
+
+  .btn-ghost {
+    @apply text-white transition-colors;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .screen-header {
+    @apply font-display text-2xl font-bold text-white tracking-wide;
+  }
+
+  .screen-subtitle {
+    @apply text-forza-subtle text-xs mt-0.5;
+  }
+
+  .section-title {
+    @apply text-white text-sm font-semibold mb-3;
+  }
+
+  .info-card {
+    @apply bg-forza-card border border-forza-border rounded-2xl p-4;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.5s ease forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.35s ease forwards;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

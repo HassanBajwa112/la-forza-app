@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <circle cx="256" cy="256" r="248" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
-  <g fill="#ED1C24">
-    <!-- Stylized lightning F — matches @laforzagyms profile mark -->
-    <path d="M156 392 L196 128 L308 128 L292 192 L236 192 L218 272 L312 272 L296 336 L204 336 L184 416 L144 416 Z"/>
-    <path d="M204 304 L268 304 L236 360 Z"/>
-  </g>
-</svg>

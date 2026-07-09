@@ -62,7 +62,6 @@ export const GYM_INFO = {
   instagram: '@laforzagyms',
   instagramUrl: 'https://www.instagram.com/laforzagyms/',
   logoUrl: '/la-forza-logo.png',
-  logoFallback: '/la-forza-logo.png',
   location: 'Sector F, Bahria Town, Lahore',
   landmark: 'Near Winterland',
   phone: '+92 300 1234567',

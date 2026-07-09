@@ -13,25 +13,19 @@ const sizes = {
   xl: 112,
 };
 
-/** HD vector logo — white circle + red La Forza mark (matches @laforzagyms branding). */
+/** Official @laforzagyms profile photo — used as-is, no recreation or scaling. */
 export function LaForzaLogo({ size = 'md', className = '', showRing = true }: LaForzaLogoProps) {
   const px = sizes[size];
 
   return (
-    <div
-      className={`inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ${
+    <img
+      src={GYM_INFO.logoUrl}
+      alt={`${GYM_INFO.name} logo`}
+      className={`inline-block shrink-0 rounded-full object-cover ${
         showRing ? 'ring-2 ring-forza-red/30 shadow-lg shadow-black/40' : ''
       } ${className}`}
       style={{ width: px, height: px }}
-      role="img"
-      aria-label={`${GYM_INFO.name} logo`}
-    >
-      <img
-        src={GYM_INFO.logoFallback}
-        alt=""
-        className="h-[88%] w-[88%] object-contain"
-        draggable={false}
-      />
-    </div>
+      draggable={false}
+    />
   );
 }

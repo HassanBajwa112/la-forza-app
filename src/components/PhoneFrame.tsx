@@ -29,8 +29,8 @@ export function PhoneFrame({ children }: { children: ReactNode }) {
 
         <div className="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-7 bg-forza-ink rounded-b-2xl z-50 border-b border-forza-border" />
 
-        <div className="absolute top-0 left-0 right-0 h-11 z-40 flex items-end justify-between px-7 pb-1 bg-gradient-to-b from-forza-ink/80 to-transparent">
-          <span className="text-forza-white text-xs font-semibold">9:41</span>
+        <div className="absolute top-0 left-0 right-0 h-11 z-40 flex items-end justify-between px-7 pb-1 pointer-events-none">
+          <span className="text-forza-white text-xs font-semibold drop-shadow-sm">9:41</span>
           <div className="flex items-center gap-1.5">
             <div className="flex gap-[2px]">
               {[3, 3, 2, 1].map((h, i) => (
@@ -43,7 +43,7 @@ export function PhoneFrame({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 min-h-0 pt-11 flex flex-col">
+        <div className="relative z-10 flex-1 min-h-0 flex flex-col">
           {children}
         </div>
       </div>

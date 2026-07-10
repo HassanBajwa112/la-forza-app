@@ -23,17 +23,18 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
 
   return (
     <div className="h-full min-h-0 flex flex-col relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
+      {/* Full-bleed splash atmosphere — extends behind status bar */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
         <img src="/gym-bg.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-[0.35]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-forza-ink/90 via-forza-ink/75 to-forza-ink/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-forza-ink/92 via-forza-ink/78 to-forza-ink/95" />
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(224,30,30,0.18),transparent_55%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(224,30,30,0.2),transparent_55%)]"
           animate={reduced ? undefined : { opacity: [0.85, 1, 0.85] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
 
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-8">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-8 pt-11">
         <motion.div
           className="mb-7"
           initial={reduced ? false : scaleIn.hidden}
@@ -77,7 +78,7 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
         </Stagger>
       </div>
 
-      <Stagger className="relative z-10 shrink-0 px-6 pb-6">
+      <Stagger className="relative z-10 shrink-0 px-6 pb-6 pt-2">
         <StaggerItem>
           <div className="mb-5 grid grid-cols-3 gap-2">
             {features.map(({ icon: Icon, label }) => (

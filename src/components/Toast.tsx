@@ -8,7 +8,7 @@ export function Toast() {
   const reduced = useReducedMotion();
 
   return (
-    <div className="absolute top-3 left-4 right-4 z-[60] pointer-events-none">
+    <div className="absolute top-14 left-4 right-4 z-[60] pointer-events-none">
       <AnimatePresence mode="wait">
         {toast && (
           <motion.div

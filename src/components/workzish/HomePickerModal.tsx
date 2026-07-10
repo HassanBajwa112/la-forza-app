@@ -1,4 +1,4 @@
-import { Calendar, FileText, MapPin, X, CreditCard, ShoppingBag, Dumbbell, Tv } from 'lucide-react';
+import { Calendar, FileText, MapPin, X, CreditCard, ShoppingBag, Dumbbell, Tv, CalendarCheck, Ticket, Layers } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { springSnappy } from '../../motion/presets';
 import type { OverlayScreen, MemberTab } from './MemberShell';
@@ -68,6 +68,30 @@ const laForzaOptions = [
     desc: 'Screenings, classes & socials',
     icon: Tv,
     color: 'bg-success-50 text-success-600',
+    type: 'tab' as const,
+  },
+  {
+    id: 'bookings' as const,
+    title: 'My Bookings',
+    desc: 'Courts, rooms & facilities',
+    icon: CalendarCheck,
+    color: 'bg-brand-50 text-brand-500',
+    type: 'tab' as const,
+  },
+  {
+    id: 'classes' as const,
+    title: 'My Classes',
+    desc: 'Reserved class spots',
+    icon: Ticket,
+    color: 'bg-amber-50 text-amber-600',
+    type: 'tab' as const,
+  },
+  {
+    id: 'packs' as const,
+    title: 'Class Packs',
+    desc: 'Manage your class credits',
+    icon: Layers,
+    color: 'bg-gray-100 text-gray-600',
     type: 'tab' as const,
   },
 ];

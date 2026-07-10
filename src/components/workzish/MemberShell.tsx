@@ -19,13 +19,6 @@ const primaryTabs: { id: MemberTab; label: string; icon: string }[] = [
   { id: 'membership', label: 'Plan', icon: 'membership' },
   { id: 'events', label: 'Events', icon: 'events' },
   { id: 'shop', label: 'Shop', icon: 'shop' },
-  { id: 'workout', label: 'Train', icon: 'workout' },
-];
-
-const secondaryTabs: { id: MemberTab; label: string; icon: string }[] = [
-  { id: 'bookings', label: 'Bookings', icon: 'bookings' },
-  { id: 'classes', label: 'Classes', icon: 'classes' },
-  { id: 'packs', label: 'Packs', icon: 'packs' },
   { id: 'profile', label: 'Profile', icon: 'profile' },
 ];
 
@@ -117,10 +110,10 @@ function NavRow({
             aria-current={isActive ? 'page' : undefined}
             className={`flex flex-1 flex-col items-center gap-0.5 py-1 min-w-0 ${isActive ? 'text-brand-500' : 'text-gray-500'}`}
           >
-            <div className={`flex h-8 w-8 items-center justify-center rounded-xl ${isActive ? 'bg-brand-50' : ''}`}>
+            <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActive ? 'bg-brand-50' : ''}`}>
               <TabIcon type={icon} active={isActive} />
             </div>
-            <span className="text-[8px] font-semibold truncate max-w-full px-0.5 leading-tight text-center">{label}</span>
+            <span className="text-[10px] font-semibold truncate max-w-full px-0.5 leading-tight text-center">{label}</span>
           </button>
         );
       })}
@@ -131,10 +124,8 @@ function NavRow({
 export function MemberBottomNav({ active, onChange }: { active: MemberTab; onChange: (t: MemberTab) => void }) {
   return (
     <nav className="shrink-0 z-50 border-t border-gray-200 bg-white">
-      <div className="px-1 pt-1.5 pb-0.5 space-y-0.5">
+      <div className="px-1 pt-2 pb-1">
         <NavRow items={primaryTabs} active={active} onChange={onChange} />
-        <div className="mx-2 border-t border-gray-100" />
-        <NavRow items={secondaryTabs} active={active} onChange={onChange} />
       </div>
       <div className="flex justify-center pb-[max(6px,env(safe-area-inset-bottom))] pt-0.5">
         <div className="h-1 w-[100px] rounded-full bg-gray-200" />

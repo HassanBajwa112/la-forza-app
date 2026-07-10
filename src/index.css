@@ -8,7 +8,7 @@
   }
 
   html, body, #root {
-    @apply h-full w-full m-0 p-0 bg-forza-ink font-body antialiased text-forza-white;
+    @apply h-full w-full m-0 p-0 bg-gray-50 font-outfit antialiased text-gray-900;
   }
 
   body {
@@ -17,8 +17,44 @@
 }
 
 @layer components {
-  .font-display {
-    font-family: 'Oswald', system-ui, sans-serif;
+  .wz-card {
+    @apply rounded-2xl border border-gray-200 bg-white p-5 shadow-card;
+  }
+
+  .wz-card-muted {
+    @apply rounded-2xl border border-gray-200 bg-white/[0.03] p-5;
+  }
+
+  .wz-section-title {
+    @apply text-sm font-semibold text-gray-900 mb-4;
+  }
+
+  .wz-label {
+    @apply text-xs text-gray-500;
+  }
+
+  .wz-value {
+    @apply text-sm font-semibold text-gray-900;
+  }
+
+  .wz-btn-primary {
+    @apply rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-600 active:scale-[0.98];
+  }
+
+  .wz-btn-secondary {
+    @apply rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-brand-300 hover:bg-brand-50;
+  }
+
+  .wz-input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100;
+  }
+
+  .wz-progress-track {
+    @apply h-2 w-full rounded-full bg-gray-200;
+  }
+
+  .wz-progress-fill {
+    @apply h-2 rounded-full bg-brand-500 transition-all;
   }
 
   .scroll-area {
@@ -32,139 +68,11 @@
     display: none;
   }
 
-  .label-caps {
-    @apply text-[10px] font-bold uppercase tracking-brand text-forza-red;
+  .menu-item-active {
+    @apply bg-brand-50 text-brand-600;
   }
 
-  .label-caps-muted {
-    @apply text-[10px] font-bold uppercase tracking-brand text-forza-muted;
-  }
-
-  .surface-card {
-    @apply rounded-2xl border border-forza-border/80 bg-forza-surface/90 backdrop-blur-sm;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-glow {
-    @apply shadow-premium-sm;
-  }
-
-  /* Branded hero — dark glass + red accent (matches IG post cards) */
-  .hero-panel {
-    @apply relative overflow-hidden rounded-2xl border border-forza-red/20 bg-forza-surface text-forza-white shadow-premium-lg;
-  }
-
-  .hero-panel::before {
-    content: '';
-    @apply pointer-events-none absolute left-0 top-0 bottom-0 w-[3px];
-    background: linear-gradient(180deg, #E01E1E 0%, #A81212 100%);
-  }
-
-  .hero-panel::after {
-    content: '';
-    @apply pointer-events-none absolute -top-1/3 -right-1/4 h-[120%] w-[60%];
-    background: radial-gradient(circle, rgba(224, 30, 30, 0.12) 0%, transparent 65%);
-  }
-
-  .hero-panel-inner {
-    @apply relative z-10 p-5;
-  }
-
-  .stat-value {
-    @apply font-display text-2xl font-bold leading-none tracking-wide text-forza-white;
-  }
-
-  .icon-well {
-    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-red/10 border border-forza-red/20;
-  }
-
-  .trust-strip {
-    @apply inline-flex items-center gap-2 rounded-full border border-forza-border bg-forza-elevated/80 px-3 py-1.5;
-  }
-
-  .btn-primary {
-    @apply font-display font-semibold uppercase tracking-wide transition-all active:scale-[0.97] text-forza-white shadow-cta;
-    background: linear-gradient(135deg, #E01E1E 0%, #A81212 100%);
-    letter-spacing: 0.06em;
-  }
-
-  .btn-primary:hover {
-    filter: brightness(1.08);
-  }
-
-  .btn-ghost {
-    @apply text-forza-white transition-colors font-medium;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(224, 30, 30, 0.3);
-  }
-
-  .screen-header {
-    @apply font-display text-[1.75rem] font-bold uppercase text-forza-white tracking-wide leading-tight;
-  }
-
-  .screen-subtitle {
-    @apply text-forza-muted text-xs mt-1 leading-relaxed;
-  }
-
-  .section-title {
-    @apply font-display text-base font-semibold uppercase tracking-wide text-forza-white mb-3;
-  }
-
-  .info-card {
-    @apply surface-card p-4;
-  }
-
-  .divider-brand {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-forza-red/30 to-transparent;
-  }
-
-  .text-body {
-    @apply text-forza-white/90;
-  }
-
-  .text-secondary {
-    @apply text-forza-muted;
-  }
-}
-
-@layer utilities {
-  .animate-fade-in {
-    animation: fade-in 0.5s ease forwards;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.4s ease forwards;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.35s ease forwards;
-  }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-in,
-  .animate-slide-up,
-  .animate-scale-in {
-    animation: none !important;
+  .menu-item-inactive {
+    @apply text-gray-600 hover:bg-gray-50;
   }
 }

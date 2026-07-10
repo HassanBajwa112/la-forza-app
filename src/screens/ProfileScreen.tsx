@@ -1,113 +1,111 @@
-import { MapPin, Clock, AtSign, Phone, ChevronRight, LogOut } from 'lucide-react';
-import { GYM_INFO, USER, TIERS } from '../data/mockData';
-import { useApp } from '../context/AppContext';
+import {
+  formatCurrency,
+  formatDate,
+  GYM,
+  MEMBER,
+  MEMBERSHIP,
+  WALLET,
+} from '../data/workzishMockData';
 import { ScreenLayout } from '../components/ScreenLayout';
-import { LaForzaLogo } from '../components/LaForzaLogo';
+import { StatusPill } from '../components/workzish/MemberShell';
 
-export function ProfileScreen() {
-  const { subscription, addOns, assignedTrainer } = useApp();
-  const tier = TIERS[subscription.tier];
-  const activeAddons = addOns.filter((a) => a.active);
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between items-start gap-4 py-2.5 border-b border-gray-100 last:border-0">
+      <span className="text-xs text-gray-500 shrink-0">{label}</span>
+      <span className="text-xs font-semibold text-gray-900 text-right">{value}</span>
+    </div>
+  );
+}
 
+export function ProfileScreen({
+  onChangePassword,
+  onLogout,
+}: {
+  onChangePassword: () => void;
+  onLogout: () => void;
+}) {
   return (
     <ScreenLayout>
-      <div className="px-5 pb-6">
-      <header className="flex flex-col items-center pt-6 pb-5">
-        <LaForzaLogo size="lg" showRing={false} className="mb-4 shadow-premium-sm" />
-        <p className="label-caps">Member Profile</p>
-        <h1 className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-1">{USER.name}</h1>
-        <p className="text-forza-muted text-xs mt-1">{USER.memberId}</p>
-        <div className="trust-strip mt-4">
-          <span className="px-2.5 py-0.5 rounded-full bg-forza-red text-forza-white text-[10px] font-bold uppercase tracking-wide">
-            {tier.name}
-          </span>
-          <span className="text-forza-muted text-[10px] font-medium">Since {new Date(USER.memberSince).getFullYear()}</span>
-        </div>
-      </header>
-
-      <section className="grid grid-cols-3 gap-2.5 mb-6">
-        {[
-          { label: 'Visits', value: String(USER.visitsThisMonth) },
-          { label: 'Streak', value: `${USER.streak}d` },
-          { label: 'Add-ons', value: String(activeAddons.length) },
-        ].map(({ label, value }) => (
-          <div key={label} className="surface-card text-center py-4">
-            <p className="stat-value">{value}</p>
-            <p className="label-caps-muted mt-1.5">{label}</p>
+      <div className="px-4 py-5 space-y-5">
+        <div className="flex flex-col items-center pt-2 pb-2">
+          <div className="h-16 w-16 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-2xl font-bold mb-3">
+            {MEMBER.avatarInitial}
           </div>
-        ))}
-      </section>
-
-      <section className="surface-card mb-5 p-4">
-        <h2 className="section-title">Membership</h2>
-        <div className="space-y-2.5">
-          <Row label="Plan" value={`${tier.name} — ${tier.subtitle}`} />
-          <Row label="Status" value={subscription.isFrozen ? 'Frozen' : 'Active'} active={!subscription.isFrozen} />
-          {assignedTrainer && <Row label="Trainer" value={assignedTrainer.name} />}
-          {activeAddons.map((a) => <Row key={a.id} label="Add-on" value={a.name} />)}
+          <h1 className="text-xl font-bold text-gray-900">{MEMBER.name}</h1>
+          <p className="text-xs text-gray-500 mt-0.5">{MEMBER.memberNumber}</p>
         </div>
-      </section>
 
-      <section className="surface-card mb-5 p-4">
-        <div className="flex items-center gap-3 mb-4">
-          <LaForzaLogo size="sm" showRing={false} />
-          <div>
-            <p className="font-display text-lg font-bold text-forza-white uppercase tracking-wide">LA FORZA</p>
-            <p className="text-forza-muted text-[11px]">{GYM_INFO.tagline}</p>
+        <section className="wz-card !p-0 overflow-hidden">
+          <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
+            <p className="text-xs font-semibold text-gray-700 uppercase tracking-wide">Personal Info</p>
           </div>
-        </div>
-        <div className="space-y-3">
-          <InfoRow icon={MapPin} title={GYM_INFO.location} sub={GYM_INFO.landmark} />
-          <InfoRow icon={Clock} title={`Co-ed: ${GYM_INFO.hours.coed}`} sub={`Women-only: ${GYM_INFO.hours.womenOnly}`} />
-          <InfoRow icon={AtSign} title={GYM_INFO.instagram} />
-          <InfoRow icon={Phone} title={GYM_INFO.phone} />
-        </div>
-      </section>
+          <div className="px-4 py-1">
+            <Row label="Name" value={MEMBER.name} />
+            <Row label="Phone" value={MEMBER.phone} />
+            <Row label="Email" value={MEMBER.email} />
+            <Row label="Date of Birth" value={formatDate(MEMBER.dob)} />
+            <Row label="Gender" value={MEMBER.gender} />
+            <Row label="Address" value={MEMBER.address} />
+            <Row label="Father Name" value={MEMBER.fatherName} />
+            <Row label="CNIC" value={MEMBER.cnic} />
+            <Row label="Member Since" value={formatDate(MEMBER.memberSince)} />
+          </div>
+        </section>
 
-      <section className="mb-5">
-        <h2 className="section-title">Amenities</h2>
-        <div className="flex flex-wrap gap-2">
-          {GYM_INFO.amenities.map((a) => (
-            <span key={a} className="px-3 py-1.5 rounded-xl bg-forza-elevated border border-forza-border text-forza-muted text-[11px]">
-              {a}
-            </span>
-          ))}
-        </div>
-      </section>
+        <section className="wz-card !p-4">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-sm font-semibold text-gray-900">Active Membership</p>
+            <StatusPill status={MEMBERSHIP.status} />
+          </div>
+          <p className="text-sm font-medium text-gray-900">{MEMBERSHIP.membershipName}</p>
+          <p className="text-xs text-gray-500">{MEMBERSHIP.membershipTypeName}</p>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <div>
+              <p className="wz-label">Start Date</p>
+              <p className="wz-value">{formatDate(MEMBERSHIP.startDate)}</p>
+            </div>
+            <div>
+              <p className="wz-label">End Date</p>
+              <p className="wz-value">{formatDate(MEMBERSHIP.endDate)}</p>
+            </div>
+            <div>
+              <p className="wz-label">Days Left</p>
+              <p className="wz-value">{MEMBERSHIP.daysRemaining}</p>
+            </div>
+            <div>
+              <p className="wz-label">Wallet Balance</p>
+              <p className="wz-value text-brand-600">{formatCurrency(WALLET.balance)}</p>
+            </div>
+          </div>
+        </section>
 
-      <section className="space-y-1">
-        {['Visit History', 'Notifications', 'Help & Support'].map((item) => (
-          <button key={item} className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-forza-elevated transition-colors">
-            <span className="text-forza-white text-sm">{item}</span>
-            <ChevronRight size={18} className="text-forza-muted" />
+        <section className="wz-card !p-0 overflow-hidden">
+          <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
+            <p className="text-xs font-semibold text-gray-700 uppercase tracking-wide">Dues</p>
+          </div>
+          <div className="px-4 py-1">
+            <Row label="Membership Dues" value={formatCurrency(MEMBERSHIP.membershipDues)} />
+            <Row label="POS Dues" value={formatCurrency(MEMBERSHIP.posDues)} />
+            <Row label="Booking Dues" value={formatCurrency(MEMBERSHIP.bookingDues)} />
+          </div>
+        </section>
+
+        <section className="wz-card !p-4">
+          <p className="text-sm font-semibold text-gray-900 mb-3">{GYM.name}</p>
+          <p className="text-xs text-gray-500">{GYM.location}</p>
+          <p className="text-xs text-gray-500 mt-1">{GYM.phone}</p>
+        </section>
+
+        <div className="space-y-2 pb-4">
+          <button type="button" onClick={onChangePassword} className="wz-btn-secondary w-full">
+            Change Password
           </button>
-        ))}
-        <button className="w-full flex items-center gap-2 p-4 rounded-xl text-forza-white/80 text-sm mt-2">
-          <LogOut size={18} /> Sign Out
-        </button>
-      </section>
+          <button type="button" onClick={onLogout} className="w-full rounded-lg border border-gray-200 py-2.5 text-sm font-semibold text-error-600 hover:bg-error-50">
+            Logout
+          </button>
+        </div>
       </div>
     </ScreenLayout>
-  );
-}
-
-function Row({ label, value, active }: { label: string; value: string; active?: boolean }) {
-  return (
-    <div className="flex justify-between items-center">
-      <span className="text-forza-muted text-xs">{label}</span>
-      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-forza-white'}`}>{value}</span>
-    </div>
-  );
-}
-
-function InfoRow({ icon: Icon, title, sub }: { icon: typeof MapPin; title: string; sub?: string }) {
-  return (
-    <div className="flex items-start gap-2.5">
-      <Icon size={15} className="text-forza-red mt-0.5 shrink-0" />
-      <div>
-        <p className="text-forza-white text-xs">{title}</p>
-        {sub && <p className="text-forza-muted text-[10px] mt-0.5">{sub}</p>}
-      </div>
-    </div>
   );
 }

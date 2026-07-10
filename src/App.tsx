@@ -1,93 +1,80 @@
-import { useState, useRef, type ReactNode } from 'react';
+import { useState } from 'react';
 import { AppProvider } from './context/AppContext';
 import { PhoneFrame } from './components/PhoneFrame';
-import { BottomNav, type Tab } from './components/BottomNav';
+import { MemberBottomNav, WorkzishTopBar, type MemberTab } from './components/workzish/MemberShell';
+import type { OverlayScreen } from './components/workzish/MemberShell';
+import { HomePickerModal } from './components/workzish/HomePickerModal';
 import { Toast } from './components/Toast';
-import { SplashScreen } from './screens/SplashScreen';
-import { HomeScreen } from './screens/HomeScreen';
-import { MembershipScreen } from './screens/MembershipScreen';
-import { EventsScreen } from './screens/EventsScreen';
-import { WorkoutScreen } from './screens/WorkoutScreen';
+import { LoginScreen } from './screens/LoginScreen';
+import { DashboardScreen } from './screens/DashboardScreen';
+import { MyBookingsScreen } from './screens/MyBookingsScreen';
+import { MyClassesScreen } from './screens/MyClassesScreen';
+import { MyClassPacksScreen } from './screens/MyClassPacksScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
-import { ShopScreen } from './screens/ShopScreen';
-import { TabTransition } from './components/motion/Transitions';
-import { tabDirection, springSnappy } from './motion/presets';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { BookNowScreen } from './screens/BookNowScreen';
+import { ClassesScreen } from './screens/ClassesScreen';
+import { ContactScreen } from './screens/ContactScreen';
+import { ChangePasswordScreen } from './screens/ChangePasswordScreen';
 
-function MainApp({ tab, onTabChange }: { tab: Tab; onTabChange: (t: Tab) => void }) {
-  const prevTab = useRef(tab);
-  const direction = tabDirection(prevTab.current, tab);
+function MemberApp({ onLogout }: { onLogout: () => void }) {
+  const [tab, setTab] = useState<MemberTab>('dashboard');
+  const [overlay, setOverlay] = useState<OverlayScreen>(null);
+  const [homePickerOpen, setHomePickerOpen] = useState(false);
 
-  const handleTabChange = (next: Tab) => {
-    prevTab.current = tab;
-    onTabChange(next);
-  };
+  if (overlay === 'book-now') return <BookNowScreen onBack={() => setOverlay(null)} />;
+  if (overlay === 'class-reserve') return <ClassesScreen onBack={() => setOverlay(null)} />;
+  if (overlay === 'contact') return <ContactScreen onBack={() => setOverlay(null)} />;
+  if (overlay === 'change-password') return <ChangePasswordScreen onBack={() => setOverlay(null)} />;
 
-  const screens: Record<Tab, ReactNode> = {
-    home: <HomeScreen onNavigate={handleTabChange} />,
-    membership: <MembershipScreen />,
-    events: <EventsScreen />,
-    shop: <ShopScreen />,
-    workout: <WorkoutScreen />,
-    profile: <ProfileScreen />,
+  const screens: Record<MemberTab, React.ReactNode> = {
+    dashboard: (
+      <DashboardScreen
+        onBookSpace={() => setOverlay('book-now')}
+        onViewBookings={() => setTab('bookings')}
+      />
+    ),
+    bookings: <MyBookingsScreen />,
+    classes: <MyClassesScreen onReserve={() => setOverlay('class-reserve')} />,
+    packs: <MyClassPacksScreen />,
+    profile: (
+      <ProfileScreen
+        onChangePassword={() => setOverlay('change-password')}
+        onLogout={onLogout}
+      />
+    ),
   };
 
   return (
-    <>
+    <div className="relative h-full min-h-0 flex flex-col bg-gray-50">
       <Toast />
+      <WorkzishTopBar
+        onOpenHomePicker={() => setHomePickerOpen(true)}
+        onOpenProfile={() => setTab('profile')}
+      />
       <div className="relative flex-1 min-h-0 overflow-hidden">
-        <TabTransition tabKey={tab} direction={direction}>
-          {screens[tab]}
-        </TabTransition>
+        {screens[tab]}
       </div>
-      <BottomNav active={tab} onChange={handleTabChange} />
-    </>
-  );
-}
-
-function AppContent() {
-  const [entered, setEntered] = useState(false);
-  const [tab, setTab] = useState<Tab>('home');
-  const reduced = useReducedMotion();
-
-  const handleEnter = (initialTab?: Tab) => {
-    if (initialTab) setTab(initialTab);
-    setEntered(true);
-  };
-
-  return (
-    <div className="flex flex-col h-full min-h-0 flex-1">
-      <AnimatePresence mode="wait">
-        {!entered ? (
-          <motion.div
-            key="splash"
-            className="flex flex-col h-full min-h-0 flex-1"
-            exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12, scale: 0.98 }}
-            transition={springSnappy}
-          >
-            <SplashScreen onEnter={handleEnter} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="app"
-            className="flex flex-col h-full min-h-0 flex-1"
-            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <MainApp tab={tab} onTabChange={setTab} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MemberBottomNav active={tab} onChange={setTab} />
+      <HomePickerModal
+        open={homePickerOpen}
+        onClose={() => setHomePickerOpen(false)}
+        onNavigate={setOverlay}
+      />
     </div>
   );
 }
 
 export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <AppProvider>
       <PhoneFrame>
-        <AppContent />
+        {loggedIn ? (
+          <MemberApp onLogout={() => setLoggedIn(false)} />
+        ) : (
+          <LoginScreen onLogin={() => setLoggedIn(true)} />
+        )}
       </PhoneFrame>
     </AppProvider>
   );

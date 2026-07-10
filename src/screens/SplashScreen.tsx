@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, Dumbbell, Calendar, CreditCard, MapPin } from 'lucide-react';
+import { ChevronRight, Dumbbell, Calendar, CreditCard, MapPin, ShoppingBag } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { GYM_INFO } from '../data/mockData';
 import { LaForzaLogo } from '../components/LaForzaLogo';
@@ -10,6 +10,7 @@ const features = [
   { icon: CreditCard, label: 'Membership' },
   { icon: Calendar, label: 'Events' },
   { icon: Dumbbell, label: 'Workouts' },
+  { icon: ShoppingBag, label: 'Shop' },
 ];
 
 export function SplashScreen({ onEnter }: { onEnter: () => void }) {
@@ -80,7 +81,7 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
 
       <Stagger className="relative z-10 shrink-0 px-6 pb-6 pt-2">
         <StaggerItem>
-          <div className="mb-5 grid grid-cols-3 gap-2">
+          <div className="mb-5 grid grid-cols-2 gap-2">
             {features.map(({ icon: Icon, label }) => (
               <div key={label} className="surface-card py-3.5 text-center">
                 <Icon size={18} className="text-forza-red mx-auto" />

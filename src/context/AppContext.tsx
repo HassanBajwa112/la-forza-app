@@ -3,15 +3,22 @@ import {
   DEFAULT_ADDONS,
   DEFAULT_WEEKLY_PLAN,
   EVENTS,
+  SHOP_PRODUCTS,
   type AddOn,
   type DayPlan,
   type GymEvent,
+  type ShopProduct,
   type Subscription,
   type Tier,
   type Trainer,
   type WorkoutSet,
   WORKOUT_TEMPLATES,
 } from '../data/mockData';
+
+export interface CartItem {
+  productId: string;
+  quantity: number;
+}
 
 interface AppState {
   subscription: Subscription;
@@ -30,6 +37,14 @@ interface AppState {
   addSetToDay: (dayIndex: number, set: WorkoutSet) => void;
   removeSetFromDay: (dayIndex: number, setId: string) => void;
   moveSetToDay: (fromDay: number, toDay: number, setId: string) => void;
+  cart: CartItem[];
+  addToCart: (productId: string, quantity?: number) => void;
+  removeFromCart: (productId: string) => void;
+  updateCartQuantity: (productId: string, quantity: number) => void;
+  clearCart: () => void;
+  getCartTotal: () => number;
+  getCartCount: () => number;
+  getProductById: (id: string) => ShopProduct | undefined;
 }
 
 const AppContext = createContext<AppState | null>(null);
@@ -48,11 +63,62 @@ export function AppProvider({ children }: { children: ReactNode }) {
     DEFAULT_WEEKLY_PLAN.map((d) => ({ ...d, sets: [...d.sets] }))
   );
   const [assignedTrainer, setAssignedTrainer] = useState<Trainer | null>(null);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [toast, setToast] = useState<string | null>(null);
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2800);
+  }, []);
+
+  const getProductById = useCallback((id: string) => SHOP_PRODUCTS.find((p) => p.id === id), []);
+
+  const getCartCount = useCallback(
+    () => cart.reduce((sum, item) => sum + item.quantity, 0),
+    [cart]
+  );
+
+  const getCartTotal = useCallback(() => {
+    return cart.reduce((sum, item) => {
+      const product = SHOP_PRODUCTS.find((p) => p.id === item.productId);
+      return sum + (product ? product.memberPrice * item.quantity : 0);
+    }, 0);
+  }, [cart]);
+
+  const addToCart = useCallback((productId: string, quantity = 1) => {
+    const product = SHOP_PRODUCTS.find((p) => p.id === productId);
+    if (!product?.inStock) return;
+
+    setCart((prev) => {
+      const existing = prev.find((item) => item.productId === productId);
+      if (existing) {
+        return prev.map((item) =>
+          item.productId === productId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prev, { productId, quantity }];
+    });
+    showToast(`${product.name} added to cart`);
+  }, [showToast]);
+
+  const removeFromCart = useCallback((productId: string) => {
+    setCart((prev) => prev.filter((item) => item.productId !== productId));
+  }, []);
+
+  const updateCartQuantity = useCallback((productId: string, quantity: number) => {
+    if (quantity <= 0) {
+      setCart((prev) => prev.filter((item) => item.productId !== productId));
+      return;
+    }
+    setCart((prev) =>
+      prev.map((item) => (item.productId === productId ? { ...item, quantity } : item))
+    );
+  }, []);
+
+  const clearCart = useCallback(() => {
+    setCart([]);
   }, []);
 
   const freezeSubscription = useCallback((until: string) => {
@@ -143,6 +209,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
         addSetToDay,
         removeSetFromDay,
         moveSetToDay,
+        cart,
+        addToCart,
+        removeFromCart,
+        updateCartQuantity,
+        clearCart,
+        getCartTotal,
+        getCartCount,
+        getProductById,
       }}
     >
       {children}

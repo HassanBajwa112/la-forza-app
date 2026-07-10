@@ -9,6 +9,7 @@ import { MembershipScreen } from './screens/MembershipScreen';
 import { EventsScreen } from './screens/EventsScreen';
 import { WorkoutScreen } from './screens/WorkoutScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
+import { ShopScreen } from './screens/ShopScreen';
 import { TabTransition } from './components/motion/Transitions';
 import { tabDirection, springSnappy } from './motion/presets';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -26,6 +27,7 @@ function MainApp({ tab, onTabChange }: { tab: Tab; onTabChange: (t: Tab) => void
     home: <HomeScreen onNavigate={handleTabChange} />,
     membership: <MembershipScreen />,
     events: <EventsScreen />,
+    shop: <ShopScreen />,
     workout: <WorkoutScreen />,
     profile: <ProfileScreen />,
   };

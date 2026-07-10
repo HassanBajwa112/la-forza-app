@@ -1,4 +1,4 @@
-import { Flame, MapPin, Users, ChevronRight, Snowflake, Trophy, Tv, Dumbbell, PartyPopper, Zap } from 'lucide-react';
+import { Flame, MapPin, Users, ChevronRight, Snowflake, Trophy, Tv, Dumbbell, PartyPopper, Zap, ShoppingBag } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { GYM_INFO, TIERS, USER } from '../data/mockData';
 import type { Tab } from '../components/BottomNav';
@@ -145,6 +145,7 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
               {[
                 { label: 'Freeze Plan', tab: 'membership' as Tab, icon: Snowflake },
                 { label: 'Upgrade', tab: 'membership' as Tab, icon: Zap },
+                { label: 'Member Shop', tab: 'shop' as Tab, icon: ShoppingBag },
                 { label: 'My Workouts', tab: 'workout' as Tab, icon: Dumbbell },
                 { label: 'Gym Events', tab: 'events' as Tab, icon: Tv },
               ].map(({ label, tab, icon: Icon }) => (

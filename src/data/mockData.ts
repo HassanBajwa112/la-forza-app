@@ -257,3 +257,162 @@ export const USER = {
   visitsThisMonth: 18,
   streak: 5,
 };
+
+export type ShopCategory = 'all' | 'supplements' | 'apparel' | 'accessories' | 'equipment';
+
+export interface ShopProduct {
+  id: string;
+  name: string;
+  description: string;
+  category: Exclude<ShopCategory, 'all'>;
+  price: number;
+  memberPrice: number;
+  badge?: string;
+  inStock: boolean;
+  pickupOnly?: boolean;
+}
+
+export const SHOP_CATEGORIES: { id: ShopCategory; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'supplements', label: 'Supplements' },
+  { id: 'apparel', label: 'Apparel' },
+  { id: 'accessories', label: 'Accessories' },
+  { id: 'equipment', label: 'Gear' },
+];
+
+export const SHOP_PRODUCTS: ShopProduct[] = [
+  {
+    id: 'p1',
+    name: 'Whey Protein 2kg',
+    description: '24g protein per scoop. Chocolate flavor. Pick up at front desk after order.',
+    category: 'supplements',
+    price: 12500,
+    memberPrice: 10999,
+    badge: 'Best Seller',
+    inStock: true,
+  },
+  {
+    id: 'p2',
+    name: 'Creatine Monohydrate',
+    description: 'Micronized creatine for strength & power. 60 servings.',
+    category: 'supplements',
+    price: 3500,
+    memberPrice: 2999,
+    inStock: true,
+  },
+  {
+    id: 'p3',
+    name: 'Pre-Workout Ignite',
+    description: 'Caffeine + beta-alanine blend. Fruit punch. Train harder, recover faster.',
+    category: 'supplements',
+    price: 4200,
+    memberPrice: 3699,
+    badge: 'New',
+    inStock: true,
+  },
+  {
+    id: 'p4',
+    name: 'BCAA Recovery',
+    description: 'Intra-workout amino blend. Reduces fatigue during heavy sessions.',
+    category: 'supplements',
+    price: 3800,
+    memberPrice: 3299,
+    inStock: true,
+  },
+  {
+    id: 'p5',
+    name: 'Protein Bar 6-Pack',
+    description: '20g protein per bar. Sold at the La Forza protein bar — order ahead.',
+    category: 'supplements',
+    price: 2400,
+    memberPrice: 2099,
+    inStock: true,
+    pickupOnly: true,
+  },
+  {
+    id: 'p6',
+    name: 'La Forza Gym Tee',
+    description: 'Black cotton tee with red logo. Unisex fit. S–XL available.',
+    category: 'apparel',
+    price: 2500,
+    memberPrice: 2199,
+    inStock: true,
+  },
+  {
+    id: 'p7',
+    name: 'La Forza Hoodie',
+    description: 'Premium heavyweight hoodie. Embroidered logo. Limited drop.',
+    category: 'apparel',
+    price: 5500,
+    memberPrice: 4799,
+    badge: 'Limited',
+    inStock: true,
+  },
+  {
+    id: 'p8',
+    name: 'Training Shorts',
+    description: 'Moisture-wicking with zip pocket. Built for leg day.',
+    category: 'apparel',
+    price: 3200,
+    memberPrice: 2799,
+    inStock: true,
+  },
+  {
+    id: 'p9',
+    name: 'Shaker Bottle',
+    description: '700ml BPA-free shaker with La Forza branding. Leak-proof lid.',
+    category: 'accessories',
+    price: 1200,
+    memberPrice: 999,
+    inStock: true,
+  },
+  {
+    id: 'p10',
+    name: 'Lifting Straps',
+    description: 'Padded cotton straps for deadlifts & rows. One size.',
+    category: 'accessories',
+    price: 1800,
+    memberPrice: 1499,
+    inStock: true,
+  },
+  {
+    id: 'p11',
+    name: 'Gym Towel',
+    description: 'Quick-dry microfiber. Red trim. Essential for sauna access.',
+    category: 'accessories',
+    price: 900,
+    memberPrice: 749,
+    inStock: true,
+  },
+  {
+    id: 'p12',
+    name: 'Resistance Band Set',
+    description: '5 bands with handles & door anchor. Home or travel workouts.',
+    category: 'equipment',
+    price: 2200,
+    memberPrice: 1899,
+    inStock: true,
+  },
+  {
+    id: 'p13',
+    name: 'Lifting Belt',
+    description: '4" leather belt for squats & deadlifts. S–XL in stock.',
+    category: 'equipment',
+    price: 4500,
+    memberPrice: 3999,
+    inStock: false,
+  },
+  {
+    id: 'p14',
+    name: 'Fish Oil Omega-3',
+    description: '90 softgels. Joint support & recovery for heavy lifters.',
+    category: 'supplements',
+    price: 2800,
+    memberPrice: 2399,
+    inStock: true,
+  },
+];
+
+export function formatPrice(amount: number) {
+  return `PKR ${amount.toLocaleString()}`;
+}

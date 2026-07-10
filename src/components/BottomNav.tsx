@@ -1,12 +1,13 @@
-import { Home, Calendar, Dumbbell, CreditCard, User } from 'lucide-react';
+import { Home, Calendar, Dumbbell, CreditCard, User, ShoppingBag } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-export type Tab = 'home' | 'membership' | 'events' | 'workout' | 'profile';
+export type Tab = 'home' | 'membership' | 'events' | 'shop' | 'workout' | 'profile';
 
 const tabs: { id: Tab; label: string; icon: typeof Home }[] = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'membership', label: 'Plan', icon: CreditCard },
   { id: 'events', label: 'Events', icon: Calendar },
+  { id: 'shop', label: 'Shop', icon: ShoppingBag },
   { id: 'workout', label: 'Train', icon: Dumbbell },
   { id: 'profile', label: 'Profile', icon: User },
 ];
@@ -16,7 +17,7 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
 
   return (
     <nav className="relative shrink-0 z-50 border-t border-forza-border bg-forza-surface/95 backdrop-blur-xl">
-      <div className="flex items-end justify-between px-2 pt-2 pb-1">
+      <div className="flex items-end justify-between px-1 pt-2 pb-1">
         {tabs.map(({ id, label, icon: Icon }) => {
           const isActive = active === id;
           return (
@@ -30,20 +31,20 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             >
               <motion.div
-                className={`flex h-11 w-11 items-center justify-center rounded-xl ${
+                className={`flex h-10 w-10 items-center justify-center rounded-xl ${
                   isActive ? 'bg-forza-red shadow-glow' : ''
                 }`}
                 animate={isActive && !reduced ? { scale: 1 } : { scale: 1 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 28 }}
               >
                 <Icon
-                  size={22}
+                  size={20}
                   className={isActive ? 'text-forza-white' : 'text-forza-muted'}
                   strokeWidth={isActive ? 2.5 : 1.75}
                 />
               </motion.div>
               <span
-                className={`text-[10px] font-semibold uppercase tracking-wide truncate max-w-full px-0.5 ${
+                className={`text-[9px] font-semibold uppercase tracking-wide truncate max-w-full px-0.5 ${
                   isActive ? 'text-forza-red' : 'text-forza-muted'
                 }`}
               >

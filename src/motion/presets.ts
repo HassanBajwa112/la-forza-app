@@ -32,7 +32,7 @@ export const scaleIn = {
   visible: { opacity: 1, scale: 1 },
 };
 
-export const TAB_ORDER = ['home', 'membership', 'events', 'workout', 'profile'] as const;
+export const TAB_ORDER = ['home', 'membership', 'events', 'shop', 'workout', 'profile'] as const;
 
 export function tabDirection(from: string, to: string): number {
   const a = TAB_ORDER.indexOf(from as (typeof TAB_ORDER)[number]);

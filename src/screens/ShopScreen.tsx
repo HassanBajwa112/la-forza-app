@@ -73,7 +73,7 @@ export function ShopScreen() {
   };
 
   return (
-    <>
+    <div className="relative h-full min-h-0 flex flex-col">
       <ScreenLayout>
         <Stagger className="px-5 pb-6">
           <StaggerItem>
@@ -264,7 +264,7 @@ export function ShopScreen() {
           </div>
         )}
       </AnimatedModal>
-    </>
+    </div>
   );
 }
 

@@ -43,7 +43,7 @@ export function MembershipScreen() {
     subscription.monthlyPrice + addOns.filter((a) => a.active).reduce((s, a) => s + a.price, 0);
 
   return (
-    <>
+    <div className="relative h-full min-h-0 flex flex-col">
     <ScreenLayout>
         <div className="px-5 pb-4 relative">
       <header className="pt-4 pb-5">
@@ -299,6 +299,6 @@ export function MembershipScreen() {
             ))}
           </div>
       </AnimatedModal>
-    </>
+    </div>
   );
 }

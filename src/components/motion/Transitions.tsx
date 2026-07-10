@@ -17,7 +17,7 @@ export function TabTransition({ tabKey, direction, children }: TabTransitionProp
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={tabKey}
-        className="h-full min-h-0 flex flex-col"
+        className="relative h-full min-h-0 flex flex-col"
         variants={variants}
         initial="initial"
         animate="animate"
@@ -45,7 +45,7 @@ export function AnimatedModal({ open, onClose, title, children, tall }: Animated
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[60] flex items-end"
+          className="absolute inset-0 z-[70] flex items-end"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

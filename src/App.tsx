@@ -35,7 +35,7 @@ function MainApp({ tab, onTabChange }: { tab: Tab; onTabChange: (t: Tab) => void
   return (
     <>
       <Toast />
-      <div className="flex-1 min-h-0 overflow-hidden">
+      <div className="relative flex-1 min-h-0 overflow-hidden">
         <TabTransition tabKey={tab} direction={direction}>
           {screens[tab]}
         </TabTransition>
@@ -50,6 +50,11 @@ function AppContent() {
   const [tab, setTab] = useState<Tab>('home');
   const reduced = useReducedMotion();
 
+  const handleEnter = (initialTab?: Tab) => {
+    if (initialTab) setTab(initialTab);
+    setEntered(true);
+  };
+
   return (
     <div className="flex flex-col h-full min-h-0 flex-1">
       <AnimatePresence mode="wait">
@@ -60,7 +65,7 @@ function AppContent() {
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12, scale: 0.98 }}
             transition={springSnappy}
           >
-            <SplashScreen onEnter={() => setEntered(true)} />
+            <SplashScreen onEnter={handleEnter} />
           </motion.div>
         ) : (
           <motion.div

@@ -5,21 +5,22 @@ import { GYM_INFO } from '../data/mockData';
 import { LaForzaLogo } from '../components/LaForzaLogo';
 import { Stagger, StaggerItem } from '../components/motion';
 import { springSoft, scaleIn } from '../motion/presets';
+import type { Tab } from '../components/BottomNav';
 
-const features = [
-  { icon: CreditCard, label: 'Membership' },
-  { icon: Calendar, label: 'Events' },
-  { icon: Dumbbell, label: 'Workouts' },
-  { icon: ShoppingBag, label: 'Shop' },
+const features: { icon: typeof CreditCard; label: string; tab: Tab }[] = [
+  { icon: CreditCard, label: 'Membership', tab: 'membership' },
+  { icon: Calendar, label: 'Events', tab: 'events' },
+  { icon: Dumbbell, label: 'Workouts', tab: 'workout' },
+  { icon: ShoppingBag, label: 'Shop', tab: 'shop' },
 ];
 
-export function SplashScreen({ onEnter }: { onEnter: () => void }) {
+export function SplashScreen({ onEnter }: { onEnter: (tab?: Tab) => void }) {
   const [loading, setLoading] = useState(false);
   const reduced = useReducedMotion();
 
-  const handleEnter = () => {
+  const handleEnter = (tab?: Tab) => {
     setLoading(true);
-    setTimeout(onEnter, 600);
+    setTimeout(() => onEnter(tab), 600);
   };
 
   return (
@@ -82,18 +83,23 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
       <Stagger className="relative z-10 shrink-0 px-6 pb-6 pt-2">
         <StaggerItem>
           <div className="mb-5 grid grid-cols-2 gap-2">
-            {features.map(({ icon: Icon, label }) => (
-              <div key={label} className="surface-card py-3.5 text-center">
+            {features.map(({ icon: Icon, label, tab }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => handleEnter(tab)}
+                className="surface-card py-3.5 text-center w-full transition-colors hover:border-forza-red/30"
+              >
                 <Icon size={18} className="text-forza-red mx-auto" />
                 <p className="label-caps-muted mt-2">{label}</p>
-              </div>
+              </button>
             ))}
           </div>
         </StaggerItem>
         <StaggerItem>
           <motion.button
             type="button"
-            onClick={handleEnter}
+            onClick={() => handleEnter()}
             disabled={loading}
             className="flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-sm btn-primary disabled:opacity-70"
             whileTap={reduced ? undefined : { scale: 0.98 }}

@@ -5,8 +5,15 @@ export default {
     extend: {
       colors: {
         forza: {
-          red: '#D4100B',
+          /* La Forza social / logo palette */
+          red: '#E01E1E',
+          'red-deep': '#A81212',
+          ink: '#0A0A0A',
+          surface: '#131313',
+          elevated: '#1A1A1A',
+          border: '#2A2A2A',
           white: '#FFFFFF',
+          muted: '#A3A3A3',
         },
       },
       fontFamily: {
@@ -14,13 +21,14 @@ export default {
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        premium: '0 12px 40px rgba(212, 16, 11, 0.18), 0 2px 8px rgba(212, 16, 11, 0.08)',
-        'premium-sm': '0 4px 16px rgba(212, 16, 11, 0.1), 0 1px 3px rgba(212, 16, 11, 0.06)',
-        'premium-lg': '0 20px 50px rgba(212, 16, 11, 0.22), 0 4px 12px rgba(212, 16, 11, 0.1)',
-        cta: '0 10px 28px rgba(212, 16, 11, 0.38)',
+        premium: '0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(224, 30, 30, 0.12)',
+        'premium-sm': '0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04)',
+        'premium-lg': '0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(224, 30, 30, 0.15)',
+        cta: '0 8px 24px rgba(224, 30, 30, 0.45)',
+        glow: '0 0 24px rgba(224, 30, 30, 0.25)',
       },
       letterSpacing: {
-        brand: '0.22em',
+        brand: '0.2em',
       },
     },
   },

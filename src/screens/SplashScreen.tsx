@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, Dumbbell, Calendar, CreditCard } from 'lucide-react';
+import { ChevronRight, Dumbbell, Calendar, CreditCard, MapPin } from 'lucide-react';
 import { GYM_INFO } from '../data/mockData';
 import { LaForzaLogo } from '../components/LaForzaLogo';
 
@@ -20,9 +20,9 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="h-full min-h-0 flex flex-col relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <img src="/gym-bg.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-[0.04]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-forza-white via-forza-white/98 to-forza-white" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(212,16,11,0.1),transparent_55%)]" />
+        <img src="/gym-bg.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-[0.35]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-forza-ink/90 via-forza-ink/75 to-forza-ink/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(224,30,30,0.18),transparent_55%)]" />
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-8">
@@ -34,26 +34,26 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
           Member Portal
         </p>
         <h1
-          className="font-display text-[2.6rem] font-bold text-forza-red uppercase tracking-wide text-center leading-[0.95] mt-2 animate-slide-up"
+          className="font-display text-[2.6rem] font-bold text-forza-white uppercase tracking-wide text-center leading-[0.95] mt-2 animate-slide-up"
           style={{ animationDelay: '0.1s' }}
         >
           Strength.
           <br />
           Discipline.
           <br />
-          Power.
+          <span className="text-forza-red">Power.</span>
         </h1>
         <p
-          className="text-forza-red/60 text-center text-sm mt-5 leading-relaxed max-w-[280px] animate-slide-up"
+          className="text-forza-muted text-center text-sm mt-5 leading-relaxed max-w-[280px] animate-slide-up"
           style={{ animationDelay: '0.18s' }}
         >
-          Your membership, workouts, and community — built for members who show up.
+          {GYM_INFO.tagline} — your membership, workouts & community in one place.
         </p>
 
         <div className="trust-strip mt-6 animate-slide-up" style={{ animationDelay: '0.22s' }}>
-          <span className="h-1.5 w-1.5 rounded-full bg-forza-red" />
-          <span className="text-[10px] font-bold text-forza-red/75 uppercase tracking-wide">
-            Bahria Town · Lahore
+          <MapPin size={11} className="text-forza-red" />
+          <span className="text-[10px] font-bold text-forza-muted uppercase tracking-wide">
+            Sector F · Bahria Town, Lahore
           </span>
         </div>
       </div>
@@ -63,7 +63,7 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
           {features.map(({ icon: Icon, label }) => (
             <div key={label} className="surface-card py-3.5 text-center">
               <Icon size={18} className="text-forza-red mx-auto" />
-              <p className="label-caps mt-2">{label}</p>
+              <p className="label-caps-muted mt-2">{label}</p>
             </div>
           ))}
         </div>
@@ -84,8 +84,8 @@ export function SplashScreen({ onEnter }: { onEnter: () => void }) {
           )}
         </button>
 
-        <p className="mt-4 text-center text-[10px] text-forza-red/45 font-medium">
-          Concept mockup · {GYM_INFO.instagram}
+        <p className="mt-4 text-center text-[10px] text-forza-muted font-medium">
+          {GYM_INFO.instagram} · Concept mockup
         </p>
       </div>
     </div>

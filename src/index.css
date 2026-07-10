@@ -8,7 +8,7 @@
   }
 
   html, body, #root {
-    @apply h-full w-full m-0 p-0 bg-forza-white font-body antialiased text-forza-red;
+    @apply h-full w-full m-0 p-0 bg-forza-ink font-body antialiased text-forza-white;
   }
 
   body {
@@ -32,40 +32,38 @@
     display: none;
   }
 
-  /* Micro-label — Combat-style caps tracking */
   .label-caps {
-    @apply text-[10px] font-bold uppercase tracking-brand text-forza-red/65;
+    @apply text-[10px] font-bold uppercase tracking-brand text-forza-red;
   }
 
-  .label-caps-light {
-    @apply text-[10px] font-bold uppercase tracking-brand text-forza-white/75;
+  .label-caps-muted {
+    @apply text-[10px] font-bold uppercase tracking-brand text-forza-muted;
   }
 
-  /* Elevated white card */
   .surface-card {
-    @apply rounded-2xl border border-forza-red/10 bg-forza-white;
-    box-shadow: 0 4px 20px rgba(212, 16, 11, 0.07), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    @apply rounded-2xl border border-forza-border/80 bg-forza-surface/90 backdrop-blur-sm;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   }
 
   .card-glow {
     @apply shadow-premium-sm;
   }
 
-  /* Hero panel — inverted red block, premium anchor */
+  /* Branded hero — dark glass + red accent (matches IG post cards) */
   .hero-panel {
-    @apply relative overflow-hidden rounded-2xl bg-forza-red text-forza-white shadow-premium-lg;
+    @apply relative overflow-hidden rounded-2xl border border-forza-red/20 bg-forza-surface text-forza-white shadow-premium-lg;
   }
 
   .hero-panel::before {
     content: '';
-    @apply pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%];
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 68%);
+    @apply pointer-events-none absolute left-0 top-0 bottom-0 w-[3px];
+    background: linear-gradient(180deg, #E01E1E 0%, #A81212 100%);
   }
 
   .hero-panel::after {
     content: '';
-    @apply pointer-events-none absolute bottom-0 left-0 right-0 h-px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    @apply pointer-events-none absolute -top-1/3 -right-1/4 h-[120%] w-[60%];
+    background: radial-gradient(circle, rgba(224, 30, 30, 0.12) 0%, transparent 65%);
   }
 
   .hero-panel-inner {
@@ -73,51 +71,48 @@
   }
 
   .stat-value {
-    @apply font-display text-2xl font-bold leading-none tracking-wide;
+    @apply font-display text-2xl font-bold leading-none tracking-wide text-forza-white;
   }
 
   .icon-well {
-    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-red/10 border border-forza-red/10;
-  }
-
-  .icon-well-hero {
-    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-white/15 border border-forza-white/20;
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-red/10 border border-forza-red/20;
   }
 
   .trust-strip {
-    @apply inline-flex items-center gap-2 rounded-full border border-forza-red/10 bg-forza-red/5 px-3 py-1.5;
+    @apply inline-flex items-center gap-2 rounded-full border border-forza-border bg-forza-elevated/80 px-3 py-1.5;
   }
 
   .btn-primary {
     @apply font-display font-semibold uppercase tracking-wide transition-all active:scale-[0.97] text-forza-white shadow-cta;
-    background: #D4100B;
+    background: linear-gradient(135deg, #E01E1E 0%, #A81212 100%);
     letter-spacing: 0.06em;
   }
 
   .btn-primary:hover {
-    filter: brightness(1.05);
+    filter: brightness(1.08);
   }
 
   .btn-ghost {
-    @apply text-forza-red transition-colors font-medium;
-    background: rgba(212, 16, 11, 0.05);
-    border: 1px solid rgba(212, 16, 11, 0.16);
+    @apply text-forza-white transition-colors font-medium;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .btn-ghost:hover {
-    background: rgba(212, 16, 11, 0.09);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(224, 30, 30, 0.3);
   }
 
   .screen-header {
-    @apply font-display text-[1.75rem] font-bold uppercase text-forza-red tracking-wide leading-tight;
+    @apply font-display text-[1.75rem] font-bold uppercase text-forza-white tracking-wide leading-tight;
   }
 
   .screen-subtitle {
-    @apply text-forza-red/55 text-xs mt-1 leading-relaxed;
+    @apply text-forza-muted text-xs mt-1 leading-relaxed;
   }
 
   .section-title {
-    @apply font-display text-base font-semibold uppercase tracking-wide text-forza-red mb-3;
+    @apply font-display text-base font-semibold uppercase tracking-wide text-forza-white mb-3;
   }
 
   .info-card {
@@ -125,7 +120,15 @@
   }
 
   .divider-brand {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-forza-red/20 to-transparent;
+    @apply h-px w-full bg-gradient-to-r from-transparent via-forza-red/30 to-transparent;
+  }
+
+  .text-body {
+    @apply text-forza-white/90;
+  }
+
+  .text-secondary {
+    @apply text-forza-muted;
   }
 }
 

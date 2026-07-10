@@ -15,13 +15,13 @@ export function ProfileScreen() {
       <header className="flex flex-col items-center pt-6 pb-5">
         <LaForzaLogo size="lg" showRing={false} className="mb-4 shadow-premium-sm" />
         <p className="label-caps">Member Profile</p>
-        <h1 className="font-display text-2xl font-bold text-forza-red uppercase tracking-wide mt-1">{USER.name}</h1>
-        <p className="text-forza-red/50 text-xs mt-1">{USER.memberId}</p>
+        <h1 className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-1">{USER.name}</h1>
+        <p className="text-forza-muted text-xs mt-1">{USER.memberId}</p>
         <div className="trust-strip mt-4">
           <span className="px-2.5 py-0.5 rounded-full bg-forza-red text-forza-white text-[10px] font-bold uppercase tracking-wide">
             {tier.name}
           </span>
-          <span className="text-forza-red/50 text-[10px] font-medium">Since {new Date(USER.memberSince).getFullYear()}</span>
+          <span className="text-forza-muted text-[10px] font-medium">Since {new Date(USER.memberSince).getFullYear()}</span>
         </div>
       </header>
 
@@ -32,8 +32,8 @@ export function ProfileScreen() {
           { label: 'Add-ons', value: String(activeAddons.length) },
         ].map(({ label, value }) => (
           <div key={label} className="surface-card text-center py-4">
-            <p className="stat-value text-forza-red">{value}</p>
-            <p className="label-caps mt-1.5">{label}</p>
+            <p className="stat-value">{value}</p>
+            <p className="label-caps-muted mt-1.5">{label}</p>
           </div>
         ))}
       </section>
@@ -52,8 +52,8 @@ export function ProfileScreen() {
         <div className="flex items-center gap-3 mb-4">
           <LaForzaLogo size="sm" showRing={false} />
           <div>
-            <p className="font-display text-lg font-bold text-forza-red uppercase tracking-wide">LA FORZA</p>
-            <p className="text-forza-red/50 text-[11px]">{GYM_INFO.tagline}</p>
+            <p className="font-display text-lg font-bold text-forza-white uppercase tracking-wide">LA FORZA</p>
+            <p className="text-forza-muted text-[11px]">{GYM_INFO.tagline}</p>
           </div>
         </div>
         <div className="space-y-3">
@@ -68,7 +68,7 @@ export function ProfileScreen() {
         <h2 className="section-title">Amenities</h2>
         <div className="flex flex-wrap gap-2">
           {GYM_INFO.amenities.map((a) => (
-            <span key={a} className="px-3 py-1.5 rounded-xl bg-forza-red/5 border border-forza-red/15 text-forza-red/60 text-[11px]">
+            <span key={a} className="px-3 py-1.5 rounded-xl bg-forza-elevated border border-forza-border text-forza-muted text-[11px]">
               {a}
             </span>
           ))}
@@ -77,12 +77,12 @@ export function ProfileScreen() {
 
       <section className="space-y-1">
         {['Visit History', 'Notifications', 'Help & Support'].map((item) => (
-          <button key={item} className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-forza-red/5 transition-colors">
-            <span className="text-forza-red text-sm">{item}</span>
-            <ChevronRight size={18} className="text-forza-red/50" />
+          <button key={item} className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-forza-elevated transition-colors">
+            <span className="text-forza-white text-sm">{item}</span>
+            <ChevronRight size={18} className="text-forza-muted" />
           </button>
         ))}
-        <button className="w-full flex items-center gap-2 p-4 rounded-xl text-forza-red/80 text-sm mt-2">
+        <button className="w-full flex items-center gap-2 p-4 rounded-xl text-forza-white/80 text-sm mt-2">
           <LogOut size={18} /> Sign Out
         </button>
       </section>
@@ -94,8 +94,8 @@ export function ProfileScreen() {
 function Row({ label, value, active }: { label: string; value: string; active?: boolean }) {
   return (
     <div className="flex justify-between items-center">
-      <span className="text-forza-red/50 text-xs">{label}</span>
-      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-forza-red'}`}>{value}</span>
+      <span className="text-forza-muted text-xs">{label}</span>
+      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-forza-white'}`}>{value}</span>
     </div>
   );
 }
@@ -105,8 +105,8 @@ function InfoRow({ icon: Icon, title, sub }: { icon: typeof MapPin; title: strin
     <div className="flex items-start gap-2.5">
       <Icon size={15} className="text-forza-red mt-0.5 shrink-0" />
       <div>
-        <p className="text-forza-red text-xs">{title}</p>
-        {sub && <p className="text-forza-red/50 text-[10px] mt-0.5">{sub}</p>}
+        <p className="text-forza-white text-xs">{title}</p>
+        {sub && <p className="text-forza-muted text-[10px] mt-0.5">{sub}</p>}
       </div>
     </div>
   );

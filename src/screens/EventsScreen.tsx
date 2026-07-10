@@ -8,9 +8,9 @@ function formatDate(d: string) {
 }
 
 const categoryConfig = {
-  screening: { icon: Tv, label: 'Live Screening', color: 'text-forza-red/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  screening: { icon: Tv, label: 'Live Screening', color: 'text-forza-white/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
   class: { icon: Users, label: 'Class', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
-  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-red/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-white/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
   social: { icon: PartyPopper, label: 'Social', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
 };
 
@@ -30,15 +30,15 @@ export function EventsScreen() {
       {/* Featured */}
       <section className="hero-panel mb-6">
         <div className="hero-panel-inner">
-          <span className="label-caps-light">Featured Event</span>
+          <span className="label-caps-muted">Featured Event</span>
           <p className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-2 leading-tight">
             FIFA World Cup Screening
           </p>
-          <p className="text-forza-white/70 text-xs mt-2 leading-relaxed">
+          <p className="text-forza-muted text-xs mt-2 leading-relaxed">
             Semi-finals on our 85&quot; screen · Snacks included
           </p>
-          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-forza-white/15">
-            <Calendar size={14} className="text-forza-white/80" />
+          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-forza-border">
+            <Calendar size={14} className="text-forza-red" />
             <span className="text-forza-white text-xs font-bold uppercase tracking-wide">Jul 15 · 8:00 PM</span>
           </div>
         </div>
@@ -81,10 +81,10 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className={`text-[10px] font-bold uppercase tracking-wider ${cfg.color}`}>{cfg.label}</span>
-            {ev.spots && <span className="text-forza-red/50 text-[10px]">{ev.spots} spots</span>}
+            {ev.spots && <span className="text-forza-muted text-[10px]">{ev.spots} spots</span>}
           </div>
-          <p className="text-forza-red font-semibold text-sm mt-1">{ev.title}</p>
-          <p className="text-forza-red/50 text-[11px] mt-1 leading-relaxed">{ev.description}</p>
+          <p className="text-forza-white font-semibold text-sm mt-1">{ev.title}</p>
+          <p className="text-forza-muted text-[11px] mt-1 leading-relaxed">{ev.description}</p>
           <p className="text-forza-red text-xs font-medium mt-2">{formatDate(ev.date)} · {ev.time}</p>
         </div>
       </div>

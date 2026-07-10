@@ -26,45 +26,44 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
         <header className="py-4 animate-slide-up">
           <div className="flex items-center justify-between">
             <div>
-              <p className="label-caps">Good morning</p>
-              <h1 className="font-display text-[1.85rem] font-bold text-forza-red uppercase tracking-wide leading-none mt-1">
+              <p className="label-caps-muted">Good morning</p>
+              <h1 className="font-display text-[1.85rem] font-bold text-forza-white uppercase tracking-wide leading-none mt-1">
                 {USER.name.split(' ')[0]}
               </h1>
             </div>
             <button
               type="button"
               onClick={() => onNavigate('profile')}
-              className="w-11 h-11 rounded-full bg-forza-red shadow-premium-sm flex items-center justify-center shrink-0 active:scale-95 transition-transform"
+              className="w-11 h-11 rounded-full bg-forza-red shadow-glow flex items-center justify-center shrink-0 active:scale-95 transition-transform"
             >
               <span className="text-forza-white text-sm font-bold">{USER.avatar}</span>
             </button>
           </div>
 
           <div className="trust-strip mt-4">
-            <span className="h-1 w-1 rounded-full bg-forza-red/50" />
-            <span className="text-[10px] font-semibold text-forza-red/70 uppercase tracking-wide">
-              Bahria Town · FOREMAN Equipment
+            <MapPin size={11} className="text-forza-red" />
+            <span className="text-[10px] font-semibold text-forza-muted uppercase tracking-wide">
+              {GYM_INFO.location}
             </span>
           </div>
         </header>
 
-        {/* Membership hero */}
         <section className="hero-panel mb-5 animate-slide-up" style={{ animationDelay: '0.05s' }}>
           <div className="hero-panel-inner">
             <div className="flex justify-between items-start">
               <div>
-                <p className="label-caps-light">La Forza Membership</p>
+                <p className="label-caps">La Forza Membership</p>
                 <p className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-1">
                   {tier.name}
                 </p>
-                <p className="text-forza-white/65 text-xs mt-0.5">{USER.memberId}</p>
+                <p className="text-forza-muted text-xs mt-0.5">{USER.memberId}</p>
               </div>
               {subscription.isFrozen ? (
-                <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-forza-white/15 text-forza-white text-[10px] font-semibold border border-forza-white/25">
+                <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-forza-elevated text-forza-muted text-[10px] font-semibold border border-forza-border">
                   <Snowflake size={11} /> Frozen
                 </span>
               ) : (
-                <span className="px-2.5 py-1 rounded-full bg-forza-white/20 text-forza-white text-[10px] font-bold uppercase tracking-wide border border-forza-white/30">
+                <span className="px-2.5 py-1 rounded-full bg-forza-red/15 text-forza-red text-[10px] font-bold uppercase tracking-wide border border-forza-red/30">
                   Active
                 </span>
               )}
@@ -75,23 +74,23 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
                 { label: 'Start', value: formatDate(subscription.startDate) },
                 { label: 'End', value: formatDate(subscription.endDate) },
               ].map(({ label, value }) => (
-                <div key={label} className="rounded-xl bg-forza-white/10 border border-forza-white/15 p-3">
-                  <p className="label-caps-light">{label}</p>
+                <div key={label} className="rounded-xl bg-forza-elevated/80 border border-forza-border p-3">
+                  <p className="label-caps-muted">{label}</p>
                   <p className="text-forza-white text-sm font-semibold mt-1">{value}</p>
                 </div>
               ))}
             </div>
 
             <div className="mt-4 flex items-center justify-between">
-              <p className="text-forza-white/75 text-xs">
-                <span className="font-display text-2xl font-bold text-forza-white">
+              <p className="text-forza-muted text-xs">
+                <span className="font-display text-2xl font-bold text-forza-red">
                   {daysRemaining(subscription.endDate)}
                 </span>
                 {' '}days left
               </p>
               <button
                 onClick={() => onNavigate('membership')}
-                className="flex items-center gap-0.5 text-forza-white text-xs font-bold uppercase tracking-wide"
+                className="flex items-center gap-0.5 text-forza-red text-xs font-bold uppercase tracking-wide"
               >
                 Manage <ChevronRight size={14} />
               </button>
@@ -99,7 +98,6 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
           </div>
         </section>
 
-        {/* Stats */}
         <section className="grid grid-cols-3 gap-2.5 mb-5 animate-slide-up" style={{ animationDelay: '0.1s' }}>
           {[
             { icon: Flame, label: 'Streak', value: `${USER.streak}d` },
@@ -110,25 +108,24 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
               <div className="icon-well mx-auto">
                 <Icon size={17} className="text-forza-red" />
               </div>
-              <p className="stat-value text-forza-red mt-2">{value}</p>
-              <p className="label-caps mt-1">{label}</p>
+              <p className="stat-value mt-2">{value}</p>
+              <p className="label-caps-muted mt-1">{label}</p>
             </div>
           ))}
         </section>
 
-        {/* Crowd meter */}
         <section className="surface-card p-4 mb-5 animate-slide-up" style={{ animationDelay: '0.15s' }}>
           <div className="flex justify-between items-center mb-3">
             <p className="section-title !mb-0">Crowd Meter</p>
             <span className="stat-value text-xl text-forza-red">{GYM_INFO.crowdLevel}%</span>
           </div>
-          <div className="h-2 bg-forza-red/10 rounded-full overflow-hidden">
+          <div className="h-2 bg-forza-elevated rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full bg-forza-red transition-all duration-700 shadow-premium-sm"
+              className="h-full rounded-full bg-gradient-to-r from-forza-red-deep to-forza-red transition-all duration-700 shadow-glow"
               style={{ width: `${GYM_INFO.crowdLevel}%` }}
             />
           </div>
-          <p className="text-forza-red/55 text-[11px] mt-2.5">
+          <p className="text-forza-muted text-[11px] mt-2.5">
             {GYM_INFO.crowdLevel < 40
               ? 'Quiet — great time to train'
               : GYM_INFO.crowdLevel < 70
@@ -137,7 +134,6 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
           </p>
         </section>
 
-        {/* Quick actions */}
         <section className="mb-5 animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <p className="section-title">Quick Actions</p>
           <div className="grid grid-cols-2 gap-2.5">
@@ -150,12 +146,12 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
               <button
                 key={label}
                 onClick={() => onNavigate(tab)}
-                className="surface-card p-4 text-left active:scale-[0.98] transition-all hover:border-forza-red/20 hover:shadow-premium-sm"
+                className="surface-card p-4 text-left active:scale-[0.98] transition-all hover:border-forza-red/30"
               >
                 <div className="icon-well">
                   <Icon size={18} className="text-forza-red" />
                 </div>
-                <p className="text-forza-red text-sm font-semibold mt-3">{label}</p>
+                <p className="text-forza-white text-sm font-semibold mt-3">{label}</p>
               </button>
             ))}
           </div>
@@ -168,7 +164,7 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
               {activeAddons.map((a) => (
                 <span
                   key={a.id}
-                  className="px-3 py-1.5 rounded-full bg-forza-red/10 border border-forza-red/15 text-forza-red text-xs font-semibold uppercase tracking-wide"
+                  className="px-3 py-1.5 rounded-full bg-forza-red/10 border border-forza-red/25 text-forza-red text-xs font-semibold uppercase tracking-wide"
                 >
                   {a.name}
                 </span>
@@ -193,8 +189,8 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
                 <EventIcon event={ev} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-forza-red text-sm font-semibold truncate">{ev.title}</p>
-                <p className="text-forza-red/50 text-[11px] mt-0.5">
+                <p className="text-forza-white text-sm font-semibold truncate">{ev.title}</p>
+                <p className="text-forza-muted text-[11px] mt-0.5">
                   {formatDate(ev.date)} · {ev.time}
                 </p>
               </div>
@@ -207,12 +203,21 @@ export function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
           ))}
         </section>
 
-        <footer className="flex items-center gap-2 text-forza-red/50 mt-6 pb-2">
-          <MapPin size={12} />
-          <p className="text-[10px] font-medium">{GYM_INFO.location}</p>
+        <footer className="flex items-center gap-2 text-forza-muted mt-6 pb-2">
+          <ClockIcon />
+          <p className="text-[10px] font-medium">Co-ed {GYM_INFO.hours.coed.split(' · ')[0]}</p>
         </footer>
       </div>
     </ScreenLayout>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-forza-red">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
+    </svg>
   );
 }
 

@@ -1,6 +1,5 @@
 import { Home, Calendar, Dumbbell, CreditCard, User } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { springSnappy } from '../motion/presets';
 
 export type Tab = 'home' | 'membership' | 'events' | 'workout' | 'profile';
 
@@ -17,7 +16,7 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
 
   return (
     <nav className="relative shrink-0 z-50 border-t border-forza-border bg-forza-surface/95 backdrop-blur-xl">
-      <div className="flex items-stretch justify-around px-1 pt-2 pb-2">
+      <div className="flex items-end justify-between px-2 pt-2 pb-1">
         {tabs.map(({ id, label, icon: Icon }) => {
           const isActive = active === id;
           return (
@@ -25,33 +24,31 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
               key={id}
               type="button"
               onClick={() => onChange(id)}
-              className="relative flex flex-col items-center justify-center gap-0.5 min-w-[64px] py-1"
-              whileTap={reduced ? undefined : { scale: 0.92 }}
+              aria-current={isActive ? 'page' : undefined}
+              className="flex flex-1 flex-col items-center justify-end gap-1 py-1 min-w-0"
+              whileTap={reduced ? undefined : { scale: 0.94 }}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="nav-active-pill"
-                  className="absolute top-0.5 left-1/2 -translate-x-1/2 w-11 h-11 rounded-xl bg-forza-red shadow-glow"
-                  transition={reduced ? { duration: 0 } : springSnappy}
-                />
-              )}
-              <div className="relative z-10 p-2">
+              <motion.div
+                className={`flex h-11 w-11 items-center justify-center rounded-xl ${
+                  isActive ? 'bg-forza-red shadow-glow' : ''
+                }`}
+                animate={isActive && !reduced ? { scale: 1 } : { scale: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+              >
                 <Icon
                   size={22}
                   className={isActive ? 'text-forza-white' : 'text-forza-muted'}
                   strokeWidth={isActive ? 2.5 : 1.75}
                 />
-              </div>
-              <motion.span
-                className={`relative z-10 text-[10px] font-semibold uppercase tracking-wide ${
+              </motion.div>
+              <span
+                className={`text-[10px] font-semibold uppercase tracking-wide truncate max-w-full px-0.5 ${
                   isActive ? 'text-forza-red' : 'text-forza-muted'
                 }`}
-                animate={{ opacity: isActive ? 1 : 0.85 }}
-                transition={{ duration: 0.2 }}
               >
                 {label}
-              </motion.span>
+              </span>
             </motion.button>
           );
         })}

@@ -43,9 +43,9 @@ export function MembershipScreen() {
     subscription.monthlyPrice + addOns.filter((a) => a.active).reduce((s, a) => s + a.price, 0);
 
   return (
-    <div className="h-full min-h-0 flex flex-col relative">
-      <ScreenLayout>
-        <div className="px-5 pb-6 relative">
+    <>
+    <ScreenLayout>
+        <div className="px-5 pb-4 relative">
       <header className="pt-4 pb-5">
         <h1 className="screen-header">Membership</h1>
         <p className="screen-subtitle">Manage plan, add-ons & billing</p>
@@ -138,9 +138,11 @@ export function MembershipScreen() {
           </div>
 
           {otherTier.id === 'elite' && (
-            <div className="flex items-center gap-2.5 bg-forza-elevated border border-forza-border rounded-xl p-3 mb-4">
-              <Flame size={18} className="text-forza-red shrink-0" />
-              <p className="text-xs text-forza-white/80">Unlock sauna, steam room & exclusive member events</p>
+            <div className="flex items-start gap-2.5 bg-forza-elevated border border-forza-border rounded-xl p-3 mb-4">
+              <Flame size={18} className="text-forza-red shrink-0 mt-0.5" />
+              <p className="text-xs text-forza-white/80 leading-relaxed">
+                Unlock sauna, steam room & exclusive member events
+              </p>
             </div>
           )}
 
@@ -297,6 +299,6 @@ export function MembershipScreen() {
             ))}
           </div>
       </AnimatedModal>
-    </div>
+    </>
   );
 }

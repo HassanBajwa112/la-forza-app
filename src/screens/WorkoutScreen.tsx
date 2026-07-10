@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Plus, X, ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useApp, WORKOUT_TEMPLATES } from '../context/AppContext';
 import { ScreenLayout } from '../components/ScreenLayout';
+import { springSoft } from '../motion/presets';
 
 export function WorkoutScreen() {
   const { weeklyPlan, addSetToDay, removeSetFromDay } = useApp();
@@ -73,12 +75,24 @@ export function WorkoutScreen() {
                       ))}
                     </div>
                   )}
-                  <ChevronDown size={18} className={`text-forza-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <ChevronDown size={18} className="text-forza-muted" />
+                  </motion.div>
                 </div>
               </button>
 
-              {isOpen && (
-                <div className="mt-2 ml-4 pl-4 border-l-2 border-forza-border space-y-2 animate-slide-up">
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    className="mt-2 ml-4 pl-4 border-l-2 border-forza-border space-y-2 overflow-hidden"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={springSoft}
+                  >
                   {day.sets.map((set) => (
                     <div key={set.id} className="bg-forza-elevated border border-forza-border rounded-xl overflow-hidden">
                       <button
@@ -128,8 +142,9 @@ export function WorkoutScreen() {
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           );
         })}

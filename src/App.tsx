@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useState, useRef, type ReactNode } from 'react';
 import { AppProvider } from './context/AppContext';
 import { PhoneFrame } from './components/PhoneFrame';
 import { BottomNav, type Tab } from './components/BottomNav';
@@ -9,17 +9,21 @@ import { MembershipScreen } from './screens/MembershipScreen';
 import { EventsScreen } from './screens/EventsScreen';
 import { WorkoutScreen } from './screens/WorkoutScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
+import { TabTransition } from './components/motion/Transitions';
+import { tabDirection, springSnappy } from './motion/presets';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
-function AppContent() {
-  const [entered, setEntered] = useState(false);
-  const [tab, setTab] = useState<Tab>('home');
+function MainApp({ tab, onTabChange }: { tab: Tab; onTabChange: (t: Tab) => void }) {
+  const prevTab = useRef(tab);
+  const direction = tabDirection(prevTab.current, tab);
 
-  if (!entered) {
-    return <SplashScreen onEnter={() => setEntered(true)} />;
-  }
+  const handleTabChange = (next: Tab) => {
+    prevTab.current = tab;
+    onTabChange(next);
+  };
 
   const screens: Record<Tab, ReactNode> = {
-    home: <HomeScreen onNavigate={setTab} />,
+    home: <HomeScreen onNavigate={handleTabChange} />,
     membership: <MembershipScreen />,
     events: <EventsScreen />,
     workout: <WorkoutScreen />,
@@ -27,12 +31,47 @@ function AppContent() {
   };
 
   return (
-    <div className="flex flex-col h-full min-h-0 flex-1 animate-fade-in">
+    <>
       <Toast />
-      <div key={tab} className="flex-1 min-h-0 overflow-hidden">
-        {screens[tab]}
+      <div className="flex-1 min-h-0 overflow-hidden">
+        <TabTransition tabKey={tab} direction={direction}>
+          {screens[tab]}
+        </TabTransition>
       </div>
-      <BottomNav active={tab} onChange={setTab} />
+      <BottomNav active={tab} onChange={handleTabChange} />
+    </>
+  );
+}
+
+function AppContent() {
+  const [entered, setEntered] = useState(false);
+  const [tab, setTab] = useState<Tab>('home');
+  const reduced = useReducedMotion();
+
+  return (
+    <div className="flex flex-col h-full min-h-0 flex-1">
+      <AnimatePresence mode="wait">
+        {!entered ? (
+          <motion.div
+            key="splash"
+            className="flex flex-col h-full min-h-0 flex-1"
+            exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12, scale: 0.98 }}
+            transition={springSnappy}
+          >
+            <SplashScreen onEnter={() => setEntered(true)} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="app"
+            className="flex flex-col h-full min-h-0 flex-1"
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <MainApp tab={tab} onTabChange={setTab} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

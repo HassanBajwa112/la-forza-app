@@ -2,6 +2,7 @@ import { Tv, Users, Trophy, PartyPopper, Check, Calendar } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { GymEvent } from '../data/mockData';
 import { ScreenLayout } from '../components/ScreenLayout';
+import { Stagger, StaggerItem, Pressable } from '../components/motion';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-PK', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -21,12 +22,15 @@ export function EventsScreen() {
 
   return (
     <ScreenLayout>
-      <div className="px-5 pb-6">
+      <Stagger className="px-5 pb-6">
+      <StaggerItem>
       <header className="pt-4 pb-5">
         <h1 className="screen-header">Events</h1>
         <p className="screen-subtitle">Screenings, classes & community at La Forza</p>
       </header>
+      </StaggerItem>
 
+      <StaggerItem>
       {/* Featured */}
       <section className="hero-panel mb-6">
         <div className="hero-panel-inner">
@@ -43,8 +47,10 @@ export function EventsScreen() {
           </div>
         </div>
       </section>
+      </StaggerItem>
 
       {registered.length > 0 && (
+        <StaggerItem>
         <section className="mb-6">
           <h2 className="section-title">You're Going</h2>
           <div className="space-y-3">
@@ -53,8 +59,10 @@ export function EventsScreen() {
             ))}
           </div>
         </section>
+        </StaggerItem>
       )}
 
+      <StaggerItem>
       <section>
         <h2 className="section-title">Upcoming</h2>
         <div className="space-y-3">
@@ -63,7 +71,8 @@ export function EventsScreen() {
           ))}
         </div>
       </section>
-      </div>
+      </StaggerItem>
+      </Stagger>
     </ScreenLayout>
   );
 }
@@ -88,7 +97,8 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
           <p className="text-forza-red text-xs font-medium mt-2">{formatDate(ev.date)} · {ev.time}</p>
         </div>
       </div>
-      <button
+      <Pressable
+        type="button"
         onClick={() => onToggle(ev.id)}
         className={`w-full mt-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-colors ${
           ev.registered
@@ -101,7 +111,7 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
         ) : (
           'Register Now'
         )}
-      </button>
+      </Pressable>
     </div>
   );
 }

@@ -1,8 +1,9 @@
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { Check, Snowflake, Flame, Dumbbell, User, X, Star } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { TIERS, TRAINERS } from '../data/mockData';
 import { ScreenLayout } from '../components/ScreenLayout';
+import { AnimatedModal } from '../components/motion/Transitions';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -241,13 +242,11 @@ export function MembershipScreen() {
         </div>
       </ScreenLayout>
 
-      {/* Modals */}
-      {showFreezeModal && (
-        <Modal title="Freeze Membership" onClose={() => setShowFreezeModal(false)}>
+      <AnimatedModal open={showFreezeModal} onClose={() => setShowFreezeModal(false)} title="Freeze Membership">
           <p className="text-forza-muted text-sm leading-relaxed mb-5">
             Pause your membership for travel, injury, or personal reasons. Your end date extends by the freeze period.
           </p>
-          <p className="text-forza-red text-xs font-semibold mb-2">Duration</p>
+          <p className="label-caps mb-2">Duration</p>
           <div className="grid grid-cols-4 gap-2 mb-5">
             {[7, 14, 30, 60].map((d) => (
               <button
@@ -263,15 +262,13 @@ export function MembershipScreen() {
           </div>
           <button
             onClick={handleFreeze}
-            className="w-full py-3.5 rounded-xl bg-forza-red/15 border border-forza-red/25 text-forza-white/75 font-semibold text-sm flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl btn-primary text-sm flex items-center justify-center gap-2"
           >
             <Snowflake size={16} /> Confirm Freeze
           </button>
-        </Modal>
-      )}
+      </AnimatedModal>
 
-      {showTrainerModal && (
-        <Modal title="Choose Trainer" onClose={() => setShowTrainerModal(false)} tall>
+      <AnimatedModal open={showTrainerModal} onClose={() => setShowTrainerModal(false)} title="Choose Trainer" tall>
           <div className="space-y-3">
             {TRAINERS.map((t) => (
               <button
@@ -286,7 +283,7 @@ export function MembershipScreen() {
                     {t.avatar}
                   </div>
                   <div className="flex-1">
-                    <p className="text-forza-red font-semibold">{t.name}</p>
+                    <p className="text-forza-white font-semibold">{t.name}</p>
                     <p className="text-forza-muted text-xs">{t.specialty}</p>
                     <div className="flex items-center gap-1.5 mt-1">
                       <Star size={11} className="text-forza-red fill-forza-red" />
@@ -299,24 +296,7 @@ export function MembershipScreen() {
               </button>
             ))}
           </div>
-        </Modal>
-      )}
-    </div>
-  );
-}
-
-function Modal({ title, onClose, children, tall }: { title: string; onClose: () => void; children: ReactNode; tall?: boolean }) {
-  return (
-    <div className="fixed inset-0 bg-forza-red/20 z-[60] flex items-end">
-      <div className={`w-full bg-forza-surface rounded-t-3xl p-5 border-t border-forza-border animate-slide-up ${tall ? 'max-h-[75%] overflow-y-auto scroll-area' : ''}`}>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-display text-lg font-bold text-forza-red">{title}</h2>
-          <button onClick={onClose} className="w-8 h-8 rounded-full bg-forza-elevated flex items-center justify-center text-forza-muted">
-            <X size={18} />
-          </button>
-        </div>
-        {children}
-      </div>
+      </AnimatedModal>
     </div>
   );
 }

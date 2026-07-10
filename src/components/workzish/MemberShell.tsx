@@ -1,15 +1,31 @@
 import type { ReactNode } from 'react';
 import { MEMBER } from '../../data/workzishMockData';
 
-export type MemberTab = 'dashboard' | 'bookings' | 'classes' | 'packs' | 'profile';
+export type MemberTab =
+  | 'dashboard'
+  | 'membership'
+  | 'events'
+  | 'shop'
+  | 'workout'
+  | 'bookings'
+  | 'classes'
+  | 'packs'
+  | 'profile';
 
 export type OverlayScreen = 'book-now' | 'class-reserve' | 'contact' | 'change-password' | null;
 
-const tabs: { id: MemberTab; label: string; icon: string }[] = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { id: 'bookings', label: 'My Bookings', icon: 'bookings' },
-  { id: 'classes', label: 'My Classes', icon: 'classes' },
-  { id: 'packs', label: 'My Class Packs', icon: 'packs' },
+const primaryTabs: { id: MemberTab; label: string; icon: string }[] = [
+  { id: 'dashboard', label: 'Home', icon: 'dashboard' },
+  { id: 'membership', label: 'Plan', icon: 'membership' },
+  { id: 'events', label: 'Events', icon: 'events' },
+  { id: 'shop', label: 'Shop', icon: 'shop' },
+  { id: 'workout', label: 'Train', icon: 'workout' },
+];
+
+const secondaryTabs: { id: MemberTab; label: string; icon: string }[] = [
+  { id: 'bookings', label: 'Bookings', icon: 'bookings' },
+  { id: 'classes', label: 'Classes', icon: 'classes' },
+  { id: 'packs', label: 'Packs', icon: 'packs' },
   { id: 'profile', label: 'Profile', icon: 'profile' },
 ];
 
@@ -21,6 +37,34 @@ function TabIcon({ type, active }: { type: string; active: boolean }) {
     return (
       <svg {...props}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+      </svg>
+    );
+  }
+  if (type === 'membership') {
+    return (
+      <svg {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+      </svg>
+    );
+  }
+  if (type === 'events') {
+    return (
+      <svg {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+      </svg>
+    );
+  }
+  if (type === 'shop') {
+    return (
+      <svg {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+      </svg>
+    );
+  }
+  if (type === 'workout') {
+    return (
+      <svg {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     );
   }
@@ -52,27 +96,45 @@ function TabIcon({ type, active }: { type: string; active: boolean }) {
   );
 }
 
+function NavRow({
+  items,
+  active,
+  onChange,
+}: {
+  items: { id: MemberTab; label: string; icon: string }[];
+  active: MemberTab;
+  onChange: (t: MemberTab) => void;
+}) {
+  return (
+    <div className="flex items-end justify-between px-0.5">
+      {items.map(({ id, label, icon }) => {
+        const isActive = active === id;
+        return (
+          <button
+            key={id}
+            type="button"
+            onClick={() => onChange(id)}
+            aria-current={isActive ? 'page' : undefined}
+            className={`flex flex-1 flex-col items-center gap-0.5 py-1 min-w-0 ${isActive ? 'text-brand-500' : 'text-gray-500'}`}
+          >
+            <div className={`flex h-8 w-8 items-center justify-center rounded-xl ${isActive ? 'bg-brand-50' : ''}`}>
+              <TabIcon type={icon} active={isActive} />
+            </div>
+            <span className="text-[8px] font-semibold truncate max-w-full px-0.5 leading-tight text-center">{label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function MemberBottomNav({ active, onChange }: { active: MemberTab; onChange: (t: MemberTab) => void }) {
   return (
     <nav className="shrink-0 z-50 border-t border-gray-200 bg-white">
-      <div className="flex items-end justify-between px-1 pt-1.5 pb-1">
-        {tabs.map(({ id, label, icon }) => {
-          const isActive = active === id;
-          return (
-            <button
-              key={id}
-              type="button"
-              onClick={() => onChange(id)}
-              aria-current={isActive ? 'page' : undefined}
-              className={`flex flex-1 flex-col items-center gap-0.5 py-1 min-w-0 ${isActive ? 'text-brand-500' : 'text-gray-500'}`}
-            >
-              <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActive ? 'bg-brand-50' : ''}`}>
-                <TabIcon type={icon} active={isActive} />
-              </div>
-              <span className="text-[8px] font-semibold truncate max-w-full px-0.5 leading-tight text-center">{label}</span>
-            </button>
-          );
-        })}
+      <div className="px-1 pt-1.5 pb-0.5 space-y-0.5">
+        <NavRow items={primaryTabs} active={active} onChange={onChange} />
+        <div className="mx-2 border-t border-gray-100" />
+        <NavRow items={secondaryTabs} active={active} onChange={onChange} />
       </div>
       <div className="flex justify-center pb-[max(6px,env(safe-area-inset-bottom))] pt-0.5">
         <div className="h-1 w-[100px] rounded-full bg-gray-200" />

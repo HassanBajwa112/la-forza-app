@@ -7,6 +7,10 @@ import { HomePickerModal } from './components/workzish/HomePickerModal';
 import { Toast } from './components/Toast';
 import { LoginScreen } from './screens/LoginScreen';
 import { DashboardScreen } from './screens/DashboardScreen';
+import { MembershipScreen } from './screens/MembershipScreen';
+import { EventsScreen } from './screens/EventsScreen';
+import { ShopScreen } from './screens/ShopScreen';
+import { WorkoutScreen } from './screens/WorkoutScreen';
 import { MyBookingsScreen } from './screens/MyBookingsScreen';
 import { MyClassesScreen } from './screens/MyClassesScreen';
 import { MyClassPacksScreen } from './screens/MyClassPacksScreen';
@@ -31,8 +35,13 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
       <DashboardScreen
         onBookSpace={() => setOverlay('book-now')}
         onViewBookings={() => setTab('bookings')}
+        onNavigate={setTab}
       />
     ),
+    membership: <MembershipScreen />,
+    events: <EventsScreen />,
+    shop: <ShopScreen />,
+    workout: <WorkoutScreen />,
     bookings: <MyBookingsScreen />,
     classes: <MyClassesScreen onReserve={() => setOverlay('class-reserve')} />,
     packs: <MyClassPacksScreen />,
@@ -59,6 +68,7 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
         open={homePickerOpen}
         onClose={() => setHomePickerOpen(false)}
         onNavigate={setOverlay}
+        onTabNavigate={setTab}
       />
     </div>
   );

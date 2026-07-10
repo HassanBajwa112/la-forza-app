@@ -1,4 +1,21 @@
-import { Calendar, FileText } from 'lucide-react';
+import {
+  Calendar,
+  FileText,
+  Flame,
+  Users,
+  Snowflake,
+  Trophy,
+  Tv,
+  Dumbbell,
+  PartyPopper,
+  Zap,
+  ShoppingBag,
+  ChevronRight,
+  Clock,
+} from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import { GYM_INFO, TIERS, USER } from '../data/mockData';
+import type { GymEvent } from '../data/mockData';
 import {
   ATTENDANCE,
   formatCurrency,
@@ -9,15 +26,24 @@ import {
   WALLET,
 } from '../data/workzishMockData';
 import { ScreenLayout } from '../components/ScreenLayout';
-import { StatusPill } from '../components/workzish/MemberShell';
+import { StatusPill, type MemberTab } from '../components/workzish/MemberShell';
+import { AnimatedBar, AnimatedNumber } from '../components/motion';
 
 export function DashboardScreen({
   onBookSpace,
   onViewBookings,
+  onNavigate,
 }: {
   onBookSpace: () => void;
   onViewBookings: () => void;
+  onNavigate: (tab: MemberTab) => void;
 }) {
+  const { subscription, events, addOns } = useApp();
+  const tier = TIERS[subscription.tier];
+  const upcoming = events.filter((e) => !e.registered).slice(0, 2);
+  const registered = events.filter((e) => e.registered);
+  const activeAddons = addOns.filter((a) => a.active);
+
   const changeClass = (val: number, invert = false) => {
     if (val === 0) return 'text-gray-400';
     const positive = val > 0;
@@ -36,8 +62,44 @@ export function DashboardScreen({
             <h1 className="text-2xl font-bold text-gray-900">
               Welcome back, {MEMBER.name.split(' ')[0]}
             </h1>
+            <p className="text-xs text-gray-500 mt-0.5">{tier.name} · {USER.memberId}</p>
           </div>
         </div>
+
+        <section className="grid grid-cols-3 gap-2.5">
+          {[
+            { icon: Flame, label: 'Streak', value: `${USER.streak}d` },
+            { icon: Trophy, label: 'Visits', value: String(USER.visitsThisMonth) },
+            { icon: Users, label: 'In Gym', value: String(GYM_INFO.membersNow) },
+          ].map(({ icon: Icon, label, value }) => (
+            <div key={label} className="wz-card text-center py-3.5">
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50">
+                <Icon size={17} className="text-brand-500" />
+              </div>
+              <p className="text-lg font-bold text-gray-900 mt-2">{value}</p>
+              <p className="text-[10px] font-semibold text-gray-500 uppercase mt-0.5">{label}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="wz-card !p-4">
+          <div className="flex justify-between items-center mb-3">
+            <p className="text-sm font-semibold text-gray-900">Crowd Meter</p>
+            <span className="text-xl font-bold text-brand-600">
+              <AnimatedNumber value={GYM_INFO.crowdLevel} />%
+            </span>
+          </div>
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <AnimatedBar value={GYM_INFO.crowdLevel} />
+          </div>
+          <p className="text-[11px] text-gray-500 mt-2">
+            {GYM_INFO.crowdLevel < 40
+              ? 'Quiet — great time to train'
+              : GYM_INFO.crowdLevel < 70
+                ? 'Moderate — peak hours soon'
+                : 'Busy — try off-peak hours'}
+          </p>
+        </section>
 
         <div className="grid grid-cols-2 gap-3">
           <button type="button" onClick={onBookSpace} className="wz-card text-left hover:border-brand-300 hover:shadow-card-hover transition-all !p-4">
@@ -55,6 +117,76 @@ export function DashboardScreen({
             <p className="text-xs text-gray-500 mt-0.5">View All</p>
           </button>
         </div>
+
+        <section>
+          <h2 className="wz-section-title">Quick Actions</h2>
+          <div className="grid grid-cols-2 gap-2.5">
+            {[
+              { label: 'Freeze Plan', tab: 'membership' as MemberTab, icon: Snowflake },
+              { label: 'Upgrade', tab: 'membership' as MemberTab, icon: Zap },
+              { label: 'Member Shop', tab: 'shop' as MemberTab, icon: ShoppingBag },
+              { label: 'My Workouts', tab: 'workout' as MemberTab, icon: Dumbbell },
+              { label: 'Gym Events', tab: 'events' as MemberTab, icon: Tv },
+            ].map(({ label, tab, icon: Icon }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => onNavigate(tab)}
+                className="wz-card !p-4 text-left hover:border-brand-300 transition-colors"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50">
+                  <Icon size={18} className="text-brand-500" />
+                </div>
+                <p className="text-sm font-semibold text-gray-900 mt-3">{label}</p>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {activeAddons.length > 0 && (
+          <section>
+            <h2 className="wz-section-title">Active Add-ons</h2>
+            <div className="flex gap-2 flex-wrap">
+              {activeAddons.map((a) => (
+                <span
+                  key={a.id}
+                  className="px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-600 text-xs font-semibold"
+                >
+                  {a.name}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section>
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="wz-section-title !mb-0">What&apos;s On</h2>
+            <button
+              type="button"
+              onClick={() => onNavigate('events')}
+              className="text-brand-600 text-xs font-semibold flex items-center"
+            >
+              All <ChevronRight size={14} />
+            </button>
+          </div>
+          {(registered.length > 0 ? registered : upcoming).slice(0, 2).map((ev) => (
+            <div key={ev.id} className="wz-card !p-4 mb-2.5 flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50">
+                <EventIcon event={ev} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-900 truncate">{ev.title}</p>
+                <p className="text-[11px] text-gray-500 mt-0.5">
+                  {formatDate(ev.date)} · {ev.time}
+                </p>
+              </div>
+              {ev.registered && (
+                <span className="text-[10px] font-bold uppercase text-brand-600 shrink-0">Going</span>
+              )}
+            </div>
+          ))}
+        </section>
 
         {MEMBERSHIP.hasMembership && (
           <section className="wz-card !p-6">
@@ -170,7 +302,20 @@ export function DashboardScreen({
             <p className="mt-1 text-xs text-gray-500">Available balance</p>
           </section>
         )}
+
+        <footer className="flex items-center gap-2 text-gray-500 pb-2">
+          <Clock size={12} className="text-brand-500" />
+          <p className="text-[10px] font-medium">Co-ed {GYM_INFO.hours.coed.split(' · ')[0]}</p>
+        </footer>
       </div>
     </ScreenLayout>
   );
+}
+
+function EventIcon({ event }: { event: GymEvent }) {
+  const props = { size: 18, className: 'text-brand-500' };
+  if (event.category === 'screening') return <Tv {...props} />;
+  if (event.category === 'class') return <Dumbbell {...props} />;
+  if (event.category === 'challenge') return <Trophy {...props} />;
+  return <PartyPopper {...props} />;
 }

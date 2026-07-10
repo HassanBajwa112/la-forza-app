@@ -91,7 +91,7 @@ export function AnimatedBar({ value, className = '' }: AnimatedBarProps) {
 
   return (
     <motion.div
-      className={`h-full rounded-full bg-gradient-to-r from-forza-red-deep to-forza-red shadow-glow ${className}`}
+      className={`h-full rounded-full bg-gradient-to-r from-brand-600 to-brand-500 ${className}`}
       initial={{ width: reduced ? `${value}%` : 0 }}
       animate={{ width: `${value}%` }}
       transition={reduced ? { duration: 0 } : { duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

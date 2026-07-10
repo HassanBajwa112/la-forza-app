@@ -33,12 +33,12 @@
   }
 
   .card-glow {
-    box-shadow: 0 0 0 1px rgba(237, 28, 36, 0.15), 0 8px 32px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 0 1px rgba(212, 16, 11, 0.18), 0 8px 32px rgba(0, 0, 0, 0.55);
   }
 
   .btn-primary {
     @apply font-semibold transition-transform active:scale-[0.97];
-    background: linear-gradient(135deg, #ED1C24 0%, #B8151C 100%);
+    background: linear-gradient(135deg, #D4100B 0%, #A80D08 100%);
     color: #ffffff;
   }
 

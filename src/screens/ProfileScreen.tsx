@@ -31,7 +31,7 @@ export function ProfileScreen() {
           { label: 'Add-ons', value: String(activeAddons.length) },
         ].map(({ label, value }) => (
           <div key={label} className="info-card text-center py-4">
-            <p className="font-display text-xl font-bold text-forza-gold">{value}</p>
+            <p className="font-display text-xl font-bold text-forza-red">{value}</p>
             <p className="text-forza-subtle text-[10px] font-medium mt-1">{label}</p>
           </div>
         ))}
@@ -94,7 +94,7 @@ function Row({ label, value, active }: { label: string; value: string; active?: 
   return (
     <div className="flex justify-between items-center">
       <span className="text-forza-subtle text-xs">{label}</span>
-      <span className={`text-xs font-semibold ${active ? 'text-emerald-400' : 'text-white'}`}>{value}</span>
+      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-white'}`}>{value}</span>
     </div>
   );
 }

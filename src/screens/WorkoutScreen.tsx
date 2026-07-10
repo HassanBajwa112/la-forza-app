@@ -23,11 +23,11 @@ export function WorkoutScreen() {
 
       <section className="grid grid-cols-2 gap-3 mb-6">
         <div className="info-card text-center py-5">
-          <p className="font-display text-3xl font-bold text-forza-gold">{activeDays}</p>
+          <p className="font-display text-3xl font-bold text-forza-red">{activeDays}</p>
           <p className="text-forza-subtle text-xs font-medium mt-1">Training Days</p>
         </div>
         <div className="info-card text-center py-5">
-          <p className="font-display text-3xl font-bold text-forza-gold">{totalSets}</p>
+          <p className="font-display text-3xl font-bold text-forza-red">{totalSets}</p>
           <p className="text-forza-subtle text-xs font-medium mt-1">Workout Sets</p>
         </div>
       </section>
@@ -43,22 +43,22 @@ export function WorkoutScreen() {
                 onClick={() => setSelectedDay(isOpen ? null : dayIndex)}
                 className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
                   isToday
-                    ? 'bg-forza-gold/5 border-forza-gold/30'
+                    ? 'bg-forza-red/5 border-forza-red/30'
                     : isOpen
-                    ? 'bg-forza-card border-forza-gold/20'
+                    ? 'bg-forza-card border-forza-red/20'
                     : 'bg-forza-card border-forza-border'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold text-sm ${
-                    isToday ? 'bg-forza-gold text-forza-black' : 'bg-forza-elevated text-forza-subtle'
+                    isToday ? 'bg-forza-red text-forza-black' : 'bg-forza-elevated text-forza-subtle'
                   }`}>
                     {day.shortDay}
                   </div>
                   <div className="text-left">
                     <p className="text-white text-sm font-semibold">
                       {day.day}
-                      {isToday && <span className="text-forza-gold text-[10px] ml-2 font-bold">TODAY</span>}
+                      {isToday && <span className="text-forza-red text-[10px] ml-2 font-bold">TODAY</span>}
                     </p>
                     <p className="text-forza-subtle text-[11px] mt-0.5">
                       {day.sets.length === 0 ? 'Rest day' : day.sets.map((s) => s.name).join(' · ')}
@@ -120,7 +120,7 @@ export function WorkoutScreen() {
                       <button
                         key={template.id}
                         onClick={() => addSetToDay(dayIndex, template)}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-forza-border text-[11px] text-white/85 font-medium hover:border-forza-gold/40 active:scale-95 transition-all"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-forza-border text-[11px] text-white/85 font-medium hover:border-forza-red/40 active:scale-95 transition-all"
                       >
                         <Plus size={12} />
                         <span className="w-2 h-2 rounded-full" style={{ background: template.color }} />

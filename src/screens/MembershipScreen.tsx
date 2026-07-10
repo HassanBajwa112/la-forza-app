@@ -51,10 +51,10 @@ export function MembershipScreen() {
       </header>
 
       {/* Current plan */}
-      <section className="bg-forza-card border border-forza-gold/25 rounded-2xl p-5 mb-5 card-glow">
+      <section className="bg-forza-card border border-forza-red/25 rounded-2xl p-5 mb-5 card-glow">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <p className="text-forza-gold text-[10px] uppercase tracking-[0.2em] font-bold">Current Plan</p>
+            <p className="text-forza-red text-[10px] uppercase tracking-[0.2em] font-bold">Current Plan</p>
             <p className="font-display text-2xl font-bold text-white mt-1">{currentTier.name}</p>
             <p className="text-forza-subtle text-xs">{currentTier.subtitle}</p>
           </div>
@@ -65,10 +65,10 @@ export function MembershipScreen() {
         </div>
 
         {subscription.isFrozen && (
-          <div className="flex items-center gap-3 bg-sky-500/10 border border-sky-500/20 rounded-xl p-3.5 mb-4">
-            <Snowflake size={18} className="text-sky-400 shrink-0" />
+          <div className="flex items-center gap-3 bg-forza-red/10 border border-forza-red/20 rounded-xl p-3.5 mb-4">
+            <Snowflake size={18} className="text-forza-red-light shrink-0" />
             <div>
-              <p className="text-sky-300 text-sm font-semibold">Membership Frozen</p>
+              <p className="text-forza-red-light text-sm font-semibold">Membership Frozen</p>
               <p className="text-forza-subtle text-[11px]">Until {formatDate(subscription.frozenUntil!)}</p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export function MembershipScreen() {
         <ul className="space-y-2 mb-5">
           {currentTier.features.map((f) => (
             <li key={f} className="flex items-center gap-2.5 text-xs text-white/85">
-              <Check size={14} className="text-forza-gold shrink-0" /> {f}
+              <Check size={14} className="text-forza-red shrink-0" /> {f}
             </li>
           ))}
           {currentTier.excluded.map((f) => (
@@ -103,12 +103,12 @@ export function MembershipScreen() {
             onClick={() => setShowFreezeModal(true)}
             className="w-full btn-ghost rounded-xl py-3 text-sm font-medium flex items-center justify-center gap-2"
           >
-            <Snowflake size={16} className="text-sky-400" /> Freeze Membership
+            <Snowflake size={16} className="text-forza-red-light" /> Freeze Membership
           </button>
         ) : (
           <button
             onClick={unfreezeSubscription}
-            className="w-full py-3 rounded-xl bg-sky-500/15 border border-sky-500/25 text-sky-300 text-sm font-semibold"
+            className="w-full py-3 rounded-xl bg-forza-red/15 border border-forza-red/25 text-forza-red-light text-sm font-semibold"
           >
             Unfreeze Now
           </button>
@@ -126,17 +126,17 @@ export function MembershipScreen() {
               <div className="flex items-center gap-2">
                 <p className="font-display text-lg font-bold text-white">{otherTier.name}</p>
                 {otherTier.id === 'elite' && (
-                  <span className="px-2 py-0.5 rounded-full bg-forza-gold/20 text-forza-gold text-[10px] font-bold">POPULAR</span>
+                  <span className="px-2 py-0.5 rounded-full bg-forza-red/20 text-forza-red text-[10px] font-bold">POPULAR</span>
                 )}
               </div>
               <p className="text-forza-subtle text-xs mt-0.5">{otherTier.subtitle}</p>
             </div>
-            <p className="text-forza-gold font-bold text-lg">{formatPrice(otherTier.price)}<span className="text-forza-subtle text-[10px] font-normal">/mo</span></p>
+            <p className="text-forza-red font-bold text-lg">{formatPrice(otherTier.price)}<span className="text-forza-subtle text-[10px] font-normal">/mo</span></p>
           </div>
 
           {otherTier.id === 'elite' && (
-            <div className="flex items-center gap-2.5 bg-forza-gold/5 border border-forza-gold/15 rounded-xl p-3 mb-4">
-              <Flame size={18} className="text-forza-gold shrink-0" />
+            <div className="flex items-center gap-2.5 bg-forza-red/5 border border-forza-red/15 rounded-xl p-3 mb-4">
+              <Flame size={18} className="text-forza-red shrink-0" />
               <p className="text-xs text-white/80">Unlock sauna, steam room & exclusive member events</p>
             </div>
           )}
@@ -144,7 +144,7 @@ export function MembershipScreen() {
           <ul className="space-y-1.5 mb-4">
             {otherTier.features.map((f) => (
               <li key={f} className="flex items-center gap-2 text-xs text-white/75">
-                <Check size={12} className="text-forza-gold" /> {f}
+                <Check size={12} className="text-forza-red" /> {f}
               </li>
             ))}
           </ul>
@@ -162,26 +162,26 @@ export function MembershipScreen() {
           {addOns.map((addon) => (
             <div
               key={addon.id}
-              className={`info-card transition-colors ${addon.active ? 'border-forza-gold/35' : ''}`}
+              className={`info-card transition-colors ${addon.active ? 'border-forza-red/35' : ''}`}
             >
               <div className="flex gap-3">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${addon.active ? 'bg-forza-gold/20' : 'bg-forza-elevated'}`}>
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${addon.active ? 'bg-forza-red/20' : 'bg-forza-elevated'}`}>
                   {addon.icon === 'boxing' ? (
-                    <Dumbbell size={20} className={addon.active ? 'text-forza-gold' : 'text-forza-subtle'} />
+                    <Dumbbell size={20} className={addon.active ? 'text-forza-red' : 'text-forza-subtle'} />
                   ) : (
-                    <User size={20} className={addon.active ? 'text-forza-gold' : 'text-forza-subtle'} />
+                    <User size={20} className={addon.active ? 'text-forza-red' : 'text-forza-subtle'} />
                   )}
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between">
                     <p className="text-white font-semibold text-sm">{addon.name}</p>
-                    <p className="text-forza-gold text-sm font-bold">{formatPrice(addon.price)}<span className="text-forza-subtle text-[10px]">/mo</span></p>
+                    <p className="text-forza-red text-sm font-bold">{formatPrice(addon.price)}<span className="text-forza-subtle text-[10px]">/mo</span></p>
                   </div>
                   <p className="text-forza-subtle text-[11px] mt-1 leading-relaxed">{addon.description}</p>
 
                   {addon.id === 'pt' && assignedTrainer && addon.active && (
                     <div className="mt-3 flex items-center gap-2.5 bg-forza-elevated rounded-xl p-2.5">
-                      <div className="w-8 h-8 rounded-full bg-forza-gold/20 flex items-center justify-center text-forza-gold text-xs font-bold">
+                      <div className="w-8 h-8 rounded-full bg-forza-red/20 flex items-center justify-center text-forza-red text-xs font-bold">
                         {assignedTrainer.avatar}
                       </div>
                       <div>
@@ -203,7 +203,7 @@ export function MembershipScreen() {
                     {addon.id === 'pt' && (
                       <button
                         onClick={() => setShowTrainerModal(true)}
-                        className="px-4 py-2.5 rounded-xl border border-forza-gold/30 text-forza-gold text-xs font-semibold"
+                        className="px-4 py-2.5 rounded-xl border border-forza-red/30 text-forza-red text-xs font-semibold"
                       >
                         {assignedTrainer ? 'Change' : 'Assign'}
                       </button>
@@ -233,7 +233,7 @@ export function MembershipScreen() {
         </div>
         <div className="border-t border-forza-border pt-3 flex justify-between items-center">
           <span className="text-white font-semibold">Total</span>
-          <span className="text-forza-gold text-2xl font-bold">{formatPrice(totalMonthly)}</span>
+          <span className="text-forza-red text-2xl font-bold">{formatPrice(totalMonthly)}</span>
         </div>
       </section>
         </div>
@@ -252,7 +252,7 @@ export function MembershipScreen() {
                 key={d}
                 onClick={() => setFreezeDays(d)}
                 className={`py-2.5 rounded-xl text-xs font-semibold border transition-colors ${
-                  freezeDays === d ? 'border-forza-gold bg-forza-gold/10 text-forza-gold' : 'border-forza-border text-forza-subtle'
+                  freezeDays === d ? 'border-forza-red bg-forza-red/10 text-forza-red' : 'border-forza-border text-forza-subtle'
                 }`}
               >
                 {d}d
@@ -261,7 +261,7 @@ export function MembershipScreen() {
           </div>
           <button
             onClick={handleFreeze}
-            className="w-full py-3.5 rounded-xl bg-sky-500/15 border border-sky-500/25 text-sky-300 font-semibold text-sm flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl bg-forza-red/15 border border-forza-red/25 text-forza-red-light font-semibold text-sm flex items-center justify-center gap-2"
           >
             <Snowflake size={16} /> Confirm Freeze
           </button>
@@ -276,23 +276,23 @@ export function MembershipScreen() {
                 key={t.id}
                 onClick={() => { assignTrainer(t); setShowTrainerModal(false); }}
                 className={`w-full text-left bg-forza-elevated border rounded-2xl p-4 transition-colors ${
-                  assignedTrainer?.id === t.id ? 'border-forza-gold' : 'border-forza-border'
+                  assignedTrainer?.id === t.id ? 'border-forza-red' : 'border-forza-border'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-forza-gold/20 flex items-center justify-center text-forza-gold font-bold">
+                  <div className="w-12 h-12 rounded-full bg-forza-red/20 flex items-center justify-center text-forza-red font-bold">
                     {t.avatar}
                   </div>
                   <div className="flex-1">
                     <p className="text-white font-semibold">{t.name}</p>
                     <p className="text-forza-subtle text-xs">{t.specialty}</p>
                     <div className="flex items-center gap-1.5 mt-1">
-                      <Star size={11} className="text-forza-gold fill-forza-gold" />
-                      <span className="text-forza-gold text-[11px] font-medium">{t.rating}</span>
+                      <Star size={11} className="text-forza-red fill-forza-red" />
+                      <span className="text-forza-red text-[11px] font-medium">{t.rating}</span>
                       <span className="text-forza-subtle text-[10px]">· {t.sessions} sessions</span>
                     </div>
                   </div>
-                  <p className="text-forza-gold text-sm font-bold">{formatPrice(t.price)}</p>
+                  <p className="text-forza-red text-sm font-bold">{formatPrice(t.price)}</p>
                 </div>
               </button>
             ))}

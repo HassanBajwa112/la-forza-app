@@ -8,10 +8,10 @@ function formatDate(d: string) {
 }
 
 const categoryConfig = {
-  screening: { icon: Tv, label: 'Live Screening', color: 'text-sky-400', bg: 'bg-sky-500/10', border: 'border-sky-500/20' },
-  class: { icon: Users, label: 'Class', color: 'text-forza-red', bg: 'bg-red-500/10', border: 'border-red-500/20' },
-  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-gold', bg: 'bg-forza-gold/10', border: 'border-forza-gold/20' },
-  social: { icon: PartyPopper, label: 'Social', color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  screening: { icon: Tv, label: 'Live Screening', color: 'text-forza-red-light', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  class: { icon: Users, label: 'Class', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-red-light', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  social: { icon: PartyPopper, label: 'Social', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
 };
 
 export function EventsScreen() {
@@ -29,14 +29,14 @@ export function EventsScreen() {
 
       {/* Featured */}
       <section className="relative rounded-2xl overflow-hidden mb-6 card-glow">
-        <div className="absolute inset-0 bg-gradient-to-r from-forza-red/25 via-forza-card to-forza-gold/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forza-red/25 via-forza-card to-forza-red/10" />
         <div className="relative p-5 border border-forza-red/20 rounded-2xl">
           <span className="text-forza-red text-[10px] uppercase tracking-[0.2em] font-bold">Featured</span>
           <p className="font-display text-xl font-bold text-white mt-2">FIFA World Cup Screening</p>
           <p className="text-forza-muted text-xs mt-1.5 leading-relaxed">Semi-finals on our 85" screen · Snacks included</p>
           <div className="flex items-center gap-2 mt-4">
-            <Calendar size={14} className="text-forza-gold" />
-            <span className="text-forza-gold text-xs font-semibold">Jul 15 · 8:00 PM</span>
+            <Calendar size={14} className="text-forza-red" />
+            <span className="text-forza-red text-xs font-semibold">Jul 15 · 8:00 PM</span>
           </div>
         </div>
       </section>
@@ -70,7 +70,7 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
   const Icon = cfg.icon;
 
   return (
-    <div className={`info-card ${ev.registered ? 'border-emerald-500/30' : ''}`}>
+    <div className={`info-card ${ev.registered ? 'border-forza-red/30' : ''}`}>
       <div className="flex gap-3">
         <div className={`w-12 h-12 rounded-xl ${cfg.bg} border ${cfg.border} flex items-center justify-center shrink-0`}>
           <Icon size={22} className={cfg.color} />
@@ -82,14 +82,14 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
           </div>
           <p className="text-white font-semibold text-sm mt-1">{ev.title}</p>
           <p className="text-forza-subtle text-[11px] mt-1 leading-relaxed">{ev.description}</p>
-          <p className="text-forza-gold text-xs font-medium mt-2">{formatDate(ev.date)} · {ev.time}</p>
+          <p className="text-forza-red text-xs font-medium mt-2">{formatDate(ev.date)} · {ev.time}</p>
         </div>
       </div>
       <button
         onClick={() => onToggle(ev.id)}
         className={`w-full mt-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-colors ${
           ev.registered
-            ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
+            ? 'bg-forza-red/10 border border-forza-red/25 text-forza-red'
             : 'btn-primary'
         }`}
       >

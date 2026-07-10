@@ -14,13 +14,13 @@ export function ProfileScreen() {
       <div className="px-5 pb-6">
       <header className="flex flex-col items-center pt-6 pb-6">
         <LaForzaLogo size="lg" showRing={false} className="rounded-full ring-2 ring-forza-red/40 mb-4" />
-        <h1 className="font-display text-xl font-bold text-white">{USER.name}</h1>
-        <p className="text-forza-subtle text-xs mt-1">{USER.memberId}</p>
+        <h1 className="font-display text-xl font-bold text-forza-red">{USER.name}</h1>
+        <p className="text-forza-red/50 text-xs mt-1">{USER.memberId}</p>
         <div className="flex items-center gap-2 mt-3">
           <span className="px-3 py-1 rounded-full bg-forza-red/10 border border-forza-red/30 text-forza-red text-xs font-semibold">
             {tier.name}
           </span>
-          <span className="text-forza-subtle text-[10px]">Since {new Date(USER.memberSince).getFullYear()}</span>
+          <span className="text-forza-red/50 text-[10px]">Since {new Date(USER.memberSince).getFullYear()}</span>
         </div>
       </header>
 
@@ -32,13 +32,13 @@ export function ProfileScreen() {
         ].map(({ label, value }) => (
           <div key={label} className="info-card text-center py-4">
             <p className="font-display text-xl font-bold text-forza-red">{value}</p>
-            <p className="text-forza-subtle text-[10px] font-medium mt-1">{label}</p>
+            <p className="text-forza-red/50 text-[10px] font-medium mt-1">{label}</p>
           </div>
         ))}
       </section>
 
       <section className="info-card mb-5">
-        <h2 className="text-white text-sm font-semibold mb-3">Membership</h2>
+        <h2 className="text-forza-red text-sm font-semibold mb-3">Membership</h2>
         <div className="space-y-2.5">
           <Row label="Plan" value={`${tier.name} — ${tier.subtitle}`} />
           <Row label="Status" value={subscription.isFrozen ? 'Frozen' : 'Active'} active={!subscription.isFrozen} />
@@ -51,8 +51,8 @@ export function ProfileScreen() {
         <div className="flex items-center gap-3 mb-4">
           <LaForzaLogo size="sm" showRing={false} className="rounded-xl" />
           <div>
-            <p className="font-display text-lg font-bold text-white">LA FORZA</p>
-            <p className="text-forza-subtle text-[11px]">{GYM_INFO.tagline}</p>
+            <p className="font-display text-lg font-bold text-forza-red">LA FORZA</p>
+            <p className="text-forza-red/50 text-[11px]">{GYM_INFO.tagline}</p>
           </div>
         </div>
         <div className="space-y-3">
@@ -67,7 +67,7 @@ export function ProfileScreen() {
         <h2 className="section-title">Amenities</h2>
         <div className="flex flex-wrap gap-2">
           {GYM_INFO.amenities.map((a) => (
-            <span key={a} className="px-3 py-1.5 rounded-xl bg-forza-elevated border border-forza-border text-forza-muted text-[11px]">
+            <span key={a} className="px-3 py-1.5 rounded-xl bg-forza-red/5 border border-forza-red/15 text-forza-red/60 text-[11px]">
               {a}
             </span>
           ))}
@@ -76,9 +76,9 @@ export function ProfileScreen() {
 
       <section className="space-y-1">
         {['Visit History', 'Notifications', 'Help & Support'].map((item) => (
-          <button key={item} className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-forza-card transition-colors">
-            <span className="text-white text-sm">{item}</span>
-            <ChevronRight size={18} className="text-forza-subtle" />
+          <button key={item} className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-forza-red/5 transition-colors">
+            <span className="text-forza-red text-sm">{item}</span>
+            <ChevronRight size={18} className="text-forza-red/50" />
           </button>
         ))}
         <button className="w-full flex items-center gap-2 p-4 rounded-xl text-forza-red/80 text-sm mt-2">
@@ -93,8 +93,8 @@ export function ProfileScreen() {
 function Row({ label, value, active }: { label: string; value: string; active?: boolean }) {
   return (
     <div className="flex justify-between items-center">
-      <span className="text-forza-subtle text-xs">{label}</span>
-      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-white'}`}>{value}</span>
+      <span className="text-forza-red/50 text-xs">{label}</span>
+      <span className={`text-xs font-semibold ${active ? 'text-forza-red' : 'text-forza-red'}`}>{value}</span>
     </div>
   );
 }
@@ -104,8 +104,8 @@ function InfoRow({ icon: Icon, title, sub }: { icon: typeof MapPin; title: strin
     <div className="flex items-start gap-2.5">
       <Icon size={15} className="text-forza-red mt-0.5 shrink-0" />
       <div>
-        <p className="text-white text-xs">{title}</p>
-        {sub && <p className="text-forza-subtle text-[10px] mt-0.5">{sub}</p>}
+        <p className="text-forza-red text-xs">{title}</p>
+        {sub && <p className="text-forza-red/50 text-[10px] mt-0.5">{sub}</p>}
       </div>
     </div>
   );

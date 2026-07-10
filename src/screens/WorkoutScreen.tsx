@@ -24,11 +24,11 @@ export function WorkoutScreen() {
       <section className="grid grid-cols-2 gap-3 mb-6">
         <div className="info-card text-center py-5">
           <p className="font-display text-3xl font-bold text-forza-red">{activeDays}</p>
-          <p className="text-forza-subtle text-xs font-medium mt-1">Training Days</p>
+          <p className="text-forza-red/50 text-xs font-medium mt-1">Training Days</p>
         </div>
         <div className="info-card text-center py-5">
           <p className="font-display text-3xl font-bold text-forza-red">{totalSets}</p>
-          <p className="text-forza-subtle text-xs font-medium mt-1">Workout Sets</p>
+          <p className="text-forza-red/50 text-xs font-medium mt-1">Workout Sets</p>
         </div>
       </section>
 
@@ -45,22 +45,22 @@ export function WorkoutScreen() {
                   isToday
                     ? 'bg-forza-red/5 border-forza-red/30'
                     : isOpen
-                    ? 'bg-forza-card border-forza-red/20'
-                    : 'bg-forza-card border-forza-border'
+                    ? 'bg-forza-white border-forza-red/20'
+                    : 'bg-forza-white border-forza-red/15'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold text-sm ${
-                    isToday ? 'bg-forza-red text-forza-black' : 'bg-forza-elevated text-forza-subtle'
+                    isToday ? 'bg-forza-red text-forza-white' : 'bg-forza-red/5 text-forza-red/50'
                   }`}>
                     {day.shortDay}
                   </div>
                   <div className="text-left">
-                    <p className="text-white text-sm font-semibold">
+                    <p className="text-forza-red text-sm font-semibold">
                       {day.day}
                       {isToday && <span className="text-forza-red text-[10px] ml-2 font-bold">TODAY</span>}
                     </p>
-                    <p className="text-forza-subtle text-[11px] mt-0.5">
+                    <p className="text-forza-red/50 text-[11px] mt-0.5">
                       {day.sets.length === 0 ? 'Rest day' : day.sets.map((s) => s.name).join(' · ')}
                     </p>
                   </div>
@@ -73,36 +73,36 @@ export function WorkoutScreen() {
                       ))}
                     </div>
                   )}
-                  <ChevronDown size={18} className={`text-forza-subtle transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={18} className={`text-forza-red/50 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </div>
               </button>
 
               {isOpen && (
-                <div className="mt-2 ml-4 pl-4 border-l-2 border-forza-border space-y-2 animate-slide-up">
+                <div className="mt-2 ml-4 pl-4 border-l-2 border-forza-red/15 space-y-2 animate-slide-up">
                   {day.sets.map((set) => (
-                    <div key={set.id} className="bg-forza-elevated border border-forza-border rounded-xl overflow-hidden">
+                    <div key={set.id} className="bg-forza-red/5 border border-forza-red/15 rounded-xl overflow-hidden">
                       <button
                         onClick={() => setExpandedSet(expandedSet === set.id ? null : set.id)}
                         className="w-full flex items-center gap-3 p-3.5"
                       >
                         <div className="w-1.5 h-8 rounded-full shrink-0" style={{ background: set.color }} />
                         <div className="flex-1 text-left">
-                          <p className="text-white text-sm font-semibold">{set.name}</p>
-                          <p className="text-forza-subtle text-[10px]">{set.muscleGroup} · {set.exercises.length} exercises</p>
+                          <p className="text-forza-red text-sm font-semibold">{set.name}</p>
+                          <p className="text-forza-red/50 text-[10px]">{set.muscleGroup} · {set.exercises.length} exercises</p>
                         </div>
                         <button
                           onClick={(e) => { e.stopPropagation(); removeSetFromDay(dayIndex, set.id); }}
-                          className="p-1.5 text-forza-subtle hover:text-forza-red"
+                          className="p-1.5 text-forza-red/50 hover:text-forza-red"
                         >
                           <X size={16} />
                         </button>
                       </button>
                       {expandedSet === set.id && (
-                        <div className="px-4 pb-3 border-t border-forza-border">
+                        <div className="px-4 pb-3 border-t border-forza-red/15">
                           <ul className="mt-2 space-y-1.5">
                             {set.exercises.map((ex, i) => (
-                              <li key={ex} className="flex items-center gap-2.5 text-[11px] text-white/80">
-                                <span className="w-5 h-5 rounded-md bg-forza-card flex items-center justify-center text-forza-subtle text-[10px] font-medium">
+                              <li key={ex} className="flex items-center gap-2.5 text-[11px] text-forza-red/80">
+                                <span className="w-5 h-5 rounded-md bg-forza-white flex items-center justify-center text-forza-red/50 text-[10px] font-medium">
                                   {i + 1}
                                 </span>
                                 {ex}
@@ -114,13 +114,13 @@ export function WorkoutScreen() {
                     </div>
                   ))}
 
-                  <p className="text-forza-subtle text-[10px] font-medium pt-1">Add workout:</p>
+                  <p className="text-forza-red/50 text-[10px] font-medium pt-1">Add workout:</p>
                   <div className="flex flex-wrap gap-2 pb-2">
                     {WORKOUT_TEMPLATES.filter((t) => !day.sets.find((s) => s.id === t.id)).map((template) => (
                       <button
                         key={template.id}
                         onClick={() => addSetToDay(dayIndex, template)}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-forza-border text-[11px] text-white/85 font-medium hover:border-forza-red/40 active:scale-95 transition-all"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-forza-red/15 text-[11px] text-forza-red/85 font-medium hover:border-forza-red/40 active:scale-95 transition-all"
                       >
                         <Plus size={12} />
                         <span className="w-2 h-2 rounded-full" style={{ background: template.color }} />
@@ -142,9 +142,9 @@ export function WorkoutScreen() {
             <div key={t.id} className="info-card py-3">
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-1.5 h-5 rounded-full" style={{ background: t.color }} />
-                <p className="text-white text-xs font-semibold">{t.name}</p>
+                <p className="text-forza-red text-xs font-semibold">{t.name}</p>
               </div>
-              <p className="text-forza-subtle text-[10px]">{t.exercises.slice(0, 3).join(', ')}...</p>
+              <p className="text-forza-red/50 text-[10px]">{t.exercises.slice(0, 3).join(', ')}...</p>
             </div>
           ))}
         </div>

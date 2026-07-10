@@ -228,12 +228,12 @@ export const EVENTS: GymEvent[] = [
 
 export const WORKOUT_TEMPLATES: WorkoutSet[] = [
   { id: 's1', name: 'Leg Day', muscleGroup: 'Legs', exercises: ['Squats', 'Leg Press', 'RDL', 'Leg Curl', 'Calf Raises'], color: '#D4100B' },
-  { id: 's2', name: 'Back Day', muscleGroup: 'Back', exercises: ['Deadlift', 'Pull-ups', 'Barbell Rows', 'Lat Pulldown', 'Face Pulls'], color: '#E83228' },
-  { id: 's3', name: 'Chest & Triceps', muscleGroup: 'Push', exercises: ['Bench Press', 'Incline DB Press', 'Cable Flyes', 'Tricep Dips', 'Skull Crushers'], color: '#A80D08' },
-  { id: 's4', name: 'Shoulders', muscleGroup: 'Shoulders', exercises: ['OHP', 'Lateral Raises', 'Face Pulls', 'Shrugs', 'Arnold Press'], color: '#F04A42' },
-  { id: 's5', name: 'Arms', muscleGroup: 'Arms', exercises: ['Barbell Curl', 'Hammer Curls', 'Tricep Pushdown', 'Preacher Curl', 'Overhead Extension'], color: '#C41210' },
-  { id: 's6', name: 'Core & Cardio', muscleGroup: 'Core', exercises: ['Planks', 'Cable Crunches', 'Russian Twists', 'Treadmill HIIT', 'Battle Ropes'], color: '#8B0B07' },
-  { id: 's7', name: 'Full Body', muscleGroup: 'Full Body', exercises: ['Squats', 'Bench', 'Rows', 'OHP', 'Pull-ups'], color: '#B8151C' },
+  { id: 's2', name: 'Back Day', muscleGroup: 'Back', exercises: ['Deadlift', 'Pull-ups', 'Barbell Rows', 'Lat Pulldown', 'Face Pulls'], color: '#D4100B' },
+  { id: 's3', name: 'Chest & Triceps', muscleGroup: 'Push', exercises: ['Bench Press', 'Incline DB Press', 'Cable Flyes', 'Tricep Dips', 'Skull Crushers'], color: '#D4100B' },
+  { id: 's4', name: 'Shoulders', muscleGroup: 'Shoulders', exercises: ['OHP', 'Lateral Raises', 'Face Pulls', 'Shrugs', 'Arnold Press'], color: '#D4100B' },
+  { id: 's5', name: 'Arms', muscleGroup: 'Arms', exercises: ['Barbell Curl', 'Hammer Curls', 'Tricep Pushdown', 'Preacher Curl', 'Overhead Extension'], color: '#D4100B' },
+  { id: 's6', name: 'Core & Cardio', muscleGroup: 'Core', exercises: ['Planks', 'Cable Crunches', 'Russian Twists', 'Treadmill HIIT', 'Battle Ropes'], color: '#D4100B' },
+  { id: 's7', name: 'Full Body', muscleGroup: 'Full Body', exercises: ['Squats', 'Bench', 'Rows', 'OHP', 'Pull-ups'], color: '#D4100B' },
 ];
 
 export const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

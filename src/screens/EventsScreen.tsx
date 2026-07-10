@@ -8,9 +8,9 @@ function formatDate(d: string) {
 }
 
 const categoryConfig = {
-  screening: { icon: Tv, label: 'Live Screening', color: 'text-forza-red-light', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  screening: { icon: Tv, label: 'Live Screening', color: 'text-forza-red/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
   class: { icon: Users, label: 'Class', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
-  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-red-light', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
+  challenge: { icon: Trophy, label: 'Challenge', color: 'text-forza-red/75', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
   social: { icon: PartyPopper, label: 'Social', color: 'text-forza-red', bg: 'bg-forza-red/10', border: 'border-forza-red/20' },
 };
 
@@ -29,11 +29,11 @@ export function EventsScreen() {
 
       {/* Featured */}
       <section className="relative rounded-2xl overflow-hidden mb-6 card-glow">
-        <div className="absolute inset-0 bg-gradient-to-r from-forza-red/25 via-forza-card to-forza-red/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forza-red/25 via-forza-white to-forza-red/10" />
         <div className="relative p-5 border border-forza-red/20 rounded-2xl">
           <span className="text-forza-red text-[10px] uppercase tracking-[0.2em] font-bold">Featured</span>
-          <p className="font-display text-xl font-bold text-white mt-2">FIFA World Cup Screening</p>
-          <p className="text-forza-muted text-xs mt-1.5 leading-relaxed">Semi-finals on our 85" screen · Snacks included</p>
+          <p className="font-display text-xl font-bold text-forza-red mt-2">FIFA World Cup Screening</p>
+          <p className="text-forza-red/60 text-xs mt-1.5 leading-relaxed">Semi-finals on our 85" screen · Snacks included</p>
           <div className="flex items-center gap-2 mt-4">
             <Calendar size={14} className="text-forza-red" />
             <span className="text-forza-red text-xs font-semibold">Jul 15 · 8:00 PM</span>
@@ -78,10 +78,10 @@ function EventCard({ ev, onToggle }: { ev: GymEvent; onToggle: (id: string) => v
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className={`text-[10px] font-bold uppercase tracking-wider ${cfg.color}`}>{cfg.label}</span>
-            {ev.spots && <span className="text-forza-subtle text-[10px]">{ev.spots} spots</span>}
+            {ev.spots && <span className="text-forza-red/50 text-[10px]">{ev.spots} spots</span>}
           </div>
-          <p className="text-white font-semibold text-sm mt-1">{ev.title}</p>
-          <p className="text-forza-subtle text-[11px] mt-1 leading-relaxed">{ev.description}</p>
+          <p className="text-forza-red font-semibold text-sm mt-1">{ev.title}</p>
+          <p className="text-forza-red/50 text-[11px] mt-1 leading-relaxed">{ev.description}</p>
           <p className="text-forza-red text-xs font-medium mt-2">{formatDate(ev.date)} · {ev.time}</p>
         </div>
       </div>

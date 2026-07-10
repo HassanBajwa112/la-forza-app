@@ -22,7 +22,7 @@ export function LaForzaLogo({ size = 'md', className = '', showRing = true }: La
       src={GYM_INFO.logoUrl}
       alt={`${GYM_INFO.name} logo`}
       className={`inline-block shrink-0 rounded-full object-cover ${
-        showRing ? 'ring-2 ring-forza-red/30 shadow-lg shadow-black/40' : ''
+        showRing ? 'ring-2 ring-forza-red/25 shadow-lg shadow-forza-red/15' : ''
       } ${className}`}
       style={{ width: px, height: px }}
       draggable={false}

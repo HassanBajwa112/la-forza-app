@@ -12,15 +12,16 @@ export function ProfileScreen() {
   return (
     <ScreenLayout>
       <div className="px-5 pb-6">
-      <header className="flex flex-col items-center pt-6 pb-6">
-        <LaForzaLogo size="lg" showRing={false} className="rounded-full ring-2 ring-forza-red/40 mb-4" />
-        <h1 className="font-display text-xl font-bold text-forza-red">{USER.name}</h1>
+      <header className="flex flex-col items-center pt-6 pb-5">
+        <LaForzaLogo size="lg" showRing={false} className="mb-4 shadow-premium-sm" />
+        <p className="label-caps">Member Profile</p>
+        <h1 className="font-display text-2xl font-bold text-forza-red uppercase tracking-wide mt-1">{USER.name}</h1>
         <p className="text-forza-red/50 text-xs mt-1">{USER.memberId}</p>
-        <div className="flex items-center gap-2 mt-3">
-          <span className="px-3 py-1 rounded-full bg-forza-red/10 border border-forza-red/30 text-forza-red text-xs font-semibold">
+        <div className="trust-strip mt-4">
+          <span className="px-2.5 py-0.5 rounded-full bg-forza-red text-forza-white text-[10px] font-bold uppercase tracking-wide">
             {tier.name}
           </span>
-          <span className="text-forza-red/50 text-[10px]">Since {new Date(USER.memberSince).getFullYear()}</span>
+          <span className="text-forza-red/50 text-[10px] font-medium">Since {new Date(USER.memberSince).getFullYear()}</span>
         </div>
       </header>
 
@@ -30,15 +31,15 @@ export function ProfileScreen() {
           { label: 'Streak', value: `${USER.streak}d` },
           { label: 'Add-ons', value: String(activeAddons.length) },
         ].map(({ label, value }) => (
-          <div key={label} className="info-card text-center py-4">
-            <p className="font-display text-xl font-bold text-forza-red">{value}</p>
-            <p className="text-forza-red/50 text-[10px] font-medium mt-1">{label}</p>
+          <div key={label} className="surface-card text-center py-4">
+            <p className="stat-value text-forza-red">{value}</p>
+            <p className="label-caps mt-1.5">{label}</p>
           </div>
         ))}
       </section>
 
-      <section className="info-card mb-5">
-        <h2 className="text-forza-red text-sm font-semibold mb-3">Membership</h2>
+      <section className="surface-card mb-5 p-4">
+        <h2 className="section-title">Membership</h2>
         <div className="space-y-2.5">
           <Row label="Plan" value={`${tier.name} — ${tier.subtitle}`} />
           <Row label="Status" value={subscription.isFrozen ? 'Frozen' : 'Active'} active={!subscription.isFrozen} />
@@ -47,11 +48,11 @@ export function ProfileScreen() {
         </div>
       </section>
 
-      <section className="info-card mb-5">
+      <section className="surface-card mb-5 p-4">
         <div className="flex items-center gap-3 mb-4">
-          <LaForzaLogo size="sm" showRing={false} className="rounded-xl" />
+          <LaForzaLogo size="sm" showRing={false} />
           <div>
-            <p className="font-display text-lg font-bold text-forza-red">LA FORZA</p>
+            <p className="font-display text-lg font-bold text-forza-red uppercase tracking-wide">LA FORZA</p>
             <p className="text-forza-red/50 text-[11px]">{GYM_INFO.tagline}</p>
           </div>
         </div>

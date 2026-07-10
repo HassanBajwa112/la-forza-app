@@ -51,48 +51,49 @@ export function MembershipScreen() {
       </header>
 
       {/* Current plan */}
-      <section className="bg-forza-white border border-forza-red/25 rounded-2xl p-5 mb-5 card-glow">
+      <section className="hero-panel mb-5">
+        <div className="hero-panel-inner">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <p className="text-forza-red text-[10px] uppercase tracking-[0.2em] font-bold">Current Plan</p>
-            <p className="font-display text-2xl font-bold text-forza-red mt-1">{currentTier.name}</p>
-            <p className="text-forza-red/50 text-xs">{currentTier.subtitle}</p>
+            <p className="label-caps-light">Current Plan</p>
+            <p className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-1">{currentTier.name}</p>
+            <p className="text-forza-white/65 text-xs mt-0.5">{currentTier.subtitle}</p>
           </div>
           <div className="text-right">
-            <p className="text-forza-red text-2xl font-bold">{formatPrice(subscription.monthlyPrice)}</p>
-            <p className="text-forza-red/50 text-[10px]">per month</p>
+            <p className="font-display text-2xl font-bold text-forza-white">{formatPrice(subscription.monthlyPrice)}</p>
+            <p className="label-caps-light mt-0.5">per month</p>
           </div>
         </div>
 
         {subscription.isFrozen && (
-          <div className="flex items-center gap-3 bg-forza-red/10 border border-forza-red/20 rounded-xl p-3.5 mb-4">
-            <Snowflake size={18} className="text-forza-red/75 shrink-0" />
+          <div className="flex items-center gap-3 bg-forza-white/10 border border-forza-white/20 rounded-xl p-3.5 mb-4">
+            <Snowflake size={18} className="text-forza-white/80 shrink-0" />
             <div>
-              <p className="text-forza-red/75 text-sm font-semibold">Membership Frozen</p>
-              <p className="text-forza-red/50 text-[11px]">Until {formatDate(subscription.frozenUntil!)}</p>
+              <p className="text-forza-white text-sm font-semibold">Membership Frozen</p>
+              <p className="text-forza-white/60 text-[11px]">Until {formatDate(subscription.frozenUntil!)}</p>
             </div>
           </div>
         )}
 
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-forza-red/5 rounded-xl p-3.5">
-            <p className="text-forza-red/50 text-[10px] uppercase tracking-wider">Start</p>
-            <p className="text-forza-red text-sm font-semibold mt-1">{formatDate(subscription.startDate)}</p>
+          <div className="rounded-xl bg-forza-white/10 border border-forza-white/15 p-3.5">
+            <p className="label-caps-light">Start</p>
+            <p className="text-forza-white text-sm font-semibold mt-1">{formatDate(subscription.startDate)}</p>
           </div>
-          <div className="bg-forza-red/5 rounded-xl p-3.5">
-            <p className="text-forza-red/50 text-[10px] uppercase tracking-wider">End</p>
-            <p className="text-forza-red text-sm font-semibold mt-1">{formatDate(subscription.endDate)}</p>
+          <div className="rounded-xl bg-forza-white/10 border border-forza-white/15 p-3.5">
+            <p className="label-caps-light">End</p>
+            <p className="text-forza-white text-sm font-semibold mt-1">{formatDate(subscription.endDate)}</p>
           </div>
         </div>
 
         <ul className="space-y-2 mb-5">
           {currentTier.features.map((f) => (
-            <li key={f} className="flex items-center gap-2.5 text-xs text-forza-red/85">
-              <Check size={14} className="text-forza-red shrink-0" /> {f}
+            <li key={f} className="flex items-center gap-2.5 text-xs text-forza-white/90">
+              <Check size={14} className="text-forza-white shrink-0" /> {f}
             </li>
           ))}
           {currentTier.excluded.map((f) => (
-            <li key={f} className="flex items-center gap-2.5 text-xs text-forza-red/50 line-through">
+            <li key={f} className="flex items-center gap-2.5 text-xs text-forza-white/45 line-through">
               <X size={14} className="shrink-0" /> {f}
             </li>
           ))}
@@ -101,18 +102,19 @@ export function MembershipScreen() {
         {!subscription.isFrozen ? (
           <button
             onClick={() => setShowFreezeModal(true)}
-            className="w-full btn-ghost rounded-xl py-3 text-sm font-medium flex items-center justify-center gap-2"
+            className="w-full rounded-xl py-3 text-sm font-semibold flex items-center justify-center gap-2 bg-forza-white/12 border border-forza-white/25 text-forza-white uppercase tracking-wide text-xs"
           >
-            <Snowflake size={16} className="text-forza-red/75" /> Freeze Membership
+            <Snowflake size={16} /> Freeze Membership
           </button>
         ) : (
           <button
             onClick={unfreezeSubscription}
-            className="w-full py-3 rounded-xl bg-forza-red/15 border border-forza-red/25 text-forza-red/75 text-sm font-semibold"
+            className="w-full py-3 rounded-xl bg-forza-white text-forza-red text-sm font-bold uppercase tracking-wide"
           >
             Unfreeze Now
           </button>
         )}
+        </div>
       </section>
 
       {/* Upgrade */}

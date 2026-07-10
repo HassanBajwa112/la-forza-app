@@ -12,7 +12,7 @@ const tabs: { id: Tab; label: string; icon: typeof Home }[] = [
 
 export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   return (
-    <nav className="relative shrink-0 z-50 border-t border-forza-red/15 bg-forza-white/95 backdrop-blur-xl">
+    <nav className="relative shrink-0 z-50 border-t border-forza-red/10 bg-forza-white/92 backdrop-blur-xl shadow-[0_-8px_24px_rgba(212,16,11,0.06)]">
       <div className="flex items-stretch justify-around px-1 pt-2 pb-2">
         {tabs.map(({ id, label, icon: Icon }) => {
           const isActive = active === id;
@@ -25,17 +25,17 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
             >
               <div
                 className={`p-2 rounded-xl transition-all duration-200 ${
-                  isActive ? 'bg-forza-red/10 scale-105' : ''
+                  isActive ? 'bg-forza-red shadow-premium-sm scale-105' : ''
                 }`}
               >
                 <Icon
                   size={22}
-                  className={isActive ? 'text-forza-red' : 'text-forza-red/40'}
+                  className={isActive ? 'text-forza-white' : 'text-forza-red/40'}
                   strokeWidth={isActive ? 2.5 : 1.75}
                 />
               </div>
               <span
-                className={`text-[10px] font-semibold transition-colors ${
+                className={`text-[10px] font-semibold uppercase tracking-wide transition-colors ${
                   isActive ? 'text-forza-red' : 'text-forza-red/40'
                 }`}
               >
@@ -46,9 +46,8 @@ export function BottomNav({ active, onChange }: { active: Tab; onChange: (t: Tab
         })}
       </div>
 
-      {/* iOS home indicator */}
       <div className="flex justify-center pb-[max(6px,env(safe-area-inset-bottom))] pt-0.5">
-        <div className="h-1 w-[120px] rounded-full bg-forza-red/25" />
+        <div className="h-1 w-[120px] rounded-full bg-forza-red/20" />
       </div>
     </nav>
   );

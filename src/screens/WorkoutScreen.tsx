@@ -22,13 +22,13 @@ export function WorkoutScreen() {
       </header>
 
       <section className="grid grid-cols-2 gap-3 mb-6">
-        <div className="info-card text-center py-5">
-          <p className="font-display text-3xl font-bold text-forza-red">{activeDays}</p>
-          <p className="text-forza-red/50 text-xs font-medium mt-1">Training Days</p>
+        <div className="surface-card text-center py-5">
+          <p className="stat-value text-3xl text-forza-red">{activeDays}</p>
+          <p className="label-caps mt-2">Training Days</p>
         </div>
-        <div className="info-card text-center py-5">
-          <p className="font-display text-3xl font-bold text-forza-red">{totalSets}</p>
-          <p className="text-forza-red/50 text-xs font-medium mt-1">Workout Sets</p>
+        <div className="surface-card text-center py-5">
+          <p className="stat-value text-3xl text-forza-red">{totalSets}</p>
+          <p className="label-caps mt-2">Workout Sets</p>
         </div>
       </section>
 

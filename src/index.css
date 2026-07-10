@@ -32,39 +32,100 @@
     display: none;
   }
 
+  /* Micro-label — Combat-style caps tracking */
+  .label-caps {
+    @apply text-[10px] font-bold uppercase tracking-brand text-forza-red/65;
+  }
+
+  .label-caps-light {
+    @apply text-[10px] font-bold uppercase tracking-brand text-forza-white/75;
+  }
+
+  /* Elevated white card */
+  .surface-card {
+    @apply rounded-2xl border border-forza-red/10 bg-forza-white;
+    box-shadow: 0 4px 20px rgba(212, 16, 11, 0.07), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  }
+
   .card-glow {
-    box-shadow: 0 0 0 1px rgba(212, 16, 11, 0.14), 0 8px 24px rgba(212, 16, 11, 0.1);
+    @apply shadow-premium-sm;
+  }
+
+  /* Hero panel — inverted red block, premium anchor */
+  .hero-panel {
+    @apply relative overflow-hidden rounded-2xl bg-forza-red text-forza-white shadow-premium-lg;
+  }
+
+  .hero-panel::before {
+    content: '';
+    @apply pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%];
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 68%);
+  }
+
+  .hero-panel::after {
+    content: '';
+    @apply pointer-events-none absolute bottom-0 left-0 right-0 h-px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  }
+
+  .hero-panel-inner {
+    @apply relative z-10 p-5;
+  }
+
+  .stat-value {
+    @apply font-display text-2xl font-bold leading-none tracking-wide;
+  }
+
+  .icon-well {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-red/10 border border-forza-red/10;
+  }
+
+  .icon-well-hero {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-forza-white/15 border border-forza-white/20;
+  }
+
+  .trust-strip {
+    @apply inline-flex items-center gap-2 rounded-full border border-forza-red/10 bg-forza-red/5 px-3 py-1.5;
   }
 
   .btn-primary {
-    @apply font-semibold transition-transform active:scale-[0.97] text-forza-white;
+    @apply font-display font-semibold uppercase tracking-wide transition-all active:scale-[0.97] text-forza-white shadow-cta;
     background: #D4100B;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.05);
   }
 
   .btn-ghost {
-    @apply text-forza-red transition-colors;
-    background: rgba(212, 16, 11, 0.06);
-    border: 1px solid rgba(212, 16, 11, 0.18);
+    @apply text-forza-red transition-colors font-medium;
+    background: rgba(212, 16, 11, 0.05);
+    border: 1px solid rgba(212, 16, 11, 0.16);
   }
 
   .btn-ghost:hover {
-    background: rgba(212, 16, 11, 0.1);
+    background: rgba(212, 16, 11, 0.09);
   }
 
   .screen-header {
-    @apply font-display text-2xl font-bold text-forza-red tracking-wide;
+    @apply font-display text-[1.75rem] font-bold uppercase text-forza-red tracking-wide leading-tight;
   }
 
   .screen-subtitle {
-    @apply text-forza-red/55 text-xs mt-0.5;
+    @apply text-forza-red/55 text-xs mt-1 leading-relaxed;
   }
 
   .section-title {
-    @apply text-forza-red text-sm font-semibold mb-3;
+    @apply font-display text-base font-semibold uppercase tracking-wide text-forza-red mb-3;
   }
 
   .info-card {
-    @apply rounded-2xl border border-forza-red/15 p-4 bg-forza-white;
+    @apply surface-card p-4;
+  }
+
+  .divider-brand {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-forza-red/20 to-transparent;
   }
 }
 

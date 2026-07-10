@@ -28,15 +28,18 @@ export function EventsScreen() {
       </header>
 
       {/* Featured */}
-      <section className="relative rounded-2xl overflow-hidden mb-6 card-glow">
-        <div className="absolute inset-0 bg-gradient-to-r from-forza-red/25 via-forza-white to-forza-red/10" />
-        <div className="relative p-5 border border-forza-red/20 rounded-2xl">
-          <span className="text-forza-red text-[10px] uppercase tracking-[0.2em] font-bold">Featured</span>
-          <p className="font-display text-xl font-bold text-forza-red mt-2">FIFA World Cup Screening</p>
-          <p className="text-forza-red/60 text-xs mt-1.5 leading-relaxed">Semi-finals on our 85" screen · Snacks included</p>
-          <div className="flex items-center gap-2 mt-4">
-            <Calendar size={14} className="text-forza-red" />
-            <span className="text-forza-red text-xs font-semibold">Jul 15 · 8:00 PM</span>
+      <section className="hero-panel mb-6">
+        <div className="hero-panel-inner">
+          <span className="label-caps-light">Featured Event</span>
+          <p className="font-display text-2xl font-bold text-forza-white uppercase tracking-wide mt-2 leading-tight">
+            FIFA World Cup Screening
+          </p>
+          <p className="text-forza-white/70 text-xs mt-2 leading-relaxed">
+            Semi-finals on our 85&quot; screen · Snacks included
+          </p>
+          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-forza-white/15">
+            <Calendar size={14} className="text-forza-white/80" />
+            <span className="text-forza-white text-xs font-bold uppercase tracking-wide">Jul 15 · 8:00 PM</span>
           </div>
         </div>
       </section>
